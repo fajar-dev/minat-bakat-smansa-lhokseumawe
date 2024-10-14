@@ -11,17 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('achievements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('organization_category_id');
-            $table->string('name');
-            $table->string('coach');
-            $table->string('position');
+            $table->unsignedBigInteger('user_id');
+            $table->string('activity_name');
+            $table->date('date');
+            $table->string('type');
+            $table->string('achievement_name');
+            $table->string('file_path');
             $table->timestamps();
 
-            $table->foreign('organization_category_id')
+            $table->foreign('user_id')
             ->references('id')
-            ->on('organization_categories')
+            ->on('users')
             ->cascadeOnDelete()
             ->cascadeOnUpdate();
         });
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('achievements');
     }
 };

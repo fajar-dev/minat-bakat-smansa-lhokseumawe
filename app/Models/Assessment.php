@@ -2,20 +2,29 @@
 
 namespace App\Models;
 
+use App\Models\Result;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Question extends Model
+class Assessment extends Model
 {
     use HasFactory;
     public $timestamps = true;
-    protected $table = 'questions';
+    protected $table = 'assessments';
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'text',
+        'result_id',
+        'name',
+        'age'
     ];
+
+    public function result(): BelongsTo
+    {
+        return $this->belongsTo(Result::class);
+    }
 
     public function answer(): HasMany
     {
