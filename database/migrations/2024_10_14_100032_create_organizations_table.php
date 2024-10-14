@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('organization_category_id');
             $table->string('name');
-            $table->string('coach');
-            $table->string('position');
+            $table->json('coach');
             $table->timestamps();
 
             $table->foreign('organization_category_id')
