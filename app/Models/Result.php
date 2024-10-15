@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Recomended;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Result extends Model
 {
@@ -17,4 +19,9 @@ class Result extends Model
         'content',
         'development_area'
     ];
+
+    public function recomended(): HasMany
+    {
+        return $this->hasMany(Recomended::class);
+    }
 }

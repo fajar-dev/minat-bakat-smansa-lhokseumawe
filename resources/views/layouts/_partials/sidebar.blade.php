@@ -47,7 +47,7 @@
               </a>
             </div>
             <div class="menu-item">
-              <a class="menu-link" href="dashboards/ecommerce.html">
+              <a class="menu-link @if($subTitle == 'Tipe Kecerdasan') active @endif" href="{{ route('master-data.intelligence-type') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>

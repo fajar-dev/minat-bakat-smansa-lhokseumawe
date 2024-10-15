@@ -6,7 +6,7 @@
     <table class="table align-middle table-row-dashed table-striped fs-6 gy-5">
       <thead>
         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-          <th class="min-w-50px">No</th>
+          <th class="min-w-50px ps-3">No</th>
           <th class="min-w-150px">Kegiatan</th>
           <th class="min-w-200px">Pembina</th>
         </tr>
