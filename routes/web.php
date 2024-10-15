@@ -25,4 +25,5 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::prefix('/master-data')->middleware(['auth'])->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
+    Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
 });

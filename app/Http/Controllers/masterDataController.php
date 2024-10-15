@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use App\Models\OrganizationCategory;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class masterDataController extends Controller
@@ -16,5 +17,15 @@ class masterDataController extends Controller
             'organization' => OrganizationCategory::with('organization')->get()
         ];
         return view('pages.master-data.organization',  $data);
+    }
+
+    public function question(){
+        $data = [
+            'title' => 'Data Master',
+            'subTitle' => 'Pertanyaan',
+            'page_id' => null,
+            'question' => Question::all()
+        ];
+        return view('pages.master-data.question',  $data);
     }
 }

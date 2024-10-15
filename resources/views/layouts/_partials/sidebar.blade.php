@@ -31,7 +31,7 @@
           </span>
           <div class="menu-sub menu-sub-accordion">
             <div class="menu-item">
-              <a class="menu-link  @if($subTitle == 'Ekstrakulikuler') active @endif" href="{{ route('master-data.organization') }}">
+              <a class="menu-link @if($subTitle == 'Ekstrakulikuler') active @endif" href="{{ route('master-data.organization') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
@@ -39,7 +39,7 @@
               </a>
             </div>
             <div class="menu-item">
-              <a class="menu-link" href="dashboards/ecommerce.html">
+              <a class="menu-link @if($subTitle == 'Pertanyaan') active @endif" href="{{ route('master-data.question') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
