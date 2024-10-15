@@ -21,7 +21,7 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </div>
-        <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Data Master') here show @endif">
           <span class="menu-link">
             <span class="menu-icon">
               <i class="ki-outline ki-external-drive fs-2"></i>
@@ -31,7 +31,7 @@
           </span>
           <div class="menu-sub menu-sub-accordion">
             <div class="menu-item">
-              <a class="menu-link active" href="index.html">
+              <a class="menu-link  @if($subTitle == 'Ekstrakulikuler') active @endif" href="{{ route('master-data.organization') }}">
                 <span class="menu-bullet">
                   <span class="bullet bullet-dot"></span>
                 </span>
