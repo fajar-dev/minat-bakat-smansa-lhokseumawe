@@ -17,9 +17,12 @@ class Assessment extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'user_id',
         'result_id',
         'name',
-        'age'
+        'birth_date',
+        'hobby',
+        'result'
     ];
 
     public function result(): BelongsTo

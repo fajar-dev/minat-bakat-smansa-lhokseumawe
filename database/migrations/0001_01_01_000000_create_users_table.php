@@ -16,7 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('student_identity_number')->unique()->nullable();
+            $table->date('birth_date')->nullable();
+            $table->string('hobby')->nullable();
             $table->string('password');
+            $table->string('class')->nullable();
+            $table->string('major')->nullable();
+            $table->string('photo_path')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamps();

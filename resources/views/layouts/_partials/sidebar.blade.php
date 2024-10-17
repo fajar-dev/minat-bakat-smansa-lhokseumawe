@@ -1,8 +1,8 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-  <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8" id="kt_app_sidebar_logo">
-    <a href="index.html">
-      <img alt="Logo" src="assets/media/logos/demo42.svg" class="h-25px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
-      <img alt="Logo" src="assets/media/logos/demo42-dark.svg" class="h-25px h-lg-25px theme-dark-show" />
+  <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8 " id="kt_app_sidebar_logo">
+    <a href="index.html" class="text-center">
+      <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="h-65px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
+      <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="h-65px theme-dark-show" />
     </a>
     <div class="d-flex align-items-center d-lg-none ms-n3 me-1" title="Show aside menu">
       <div class="btn btn-icon btn-active-color-primary w-30px h-30px" id="kt_aside_mobile_toggle">
@@ -13,6 +13,11 @@
   <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
     <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5 mx-3" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer" data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px">
       <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-1" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
+        <div class="menu-item mb-5">
+          <a class="btn btn-primary w-100" href="{{ route('home') }}">
+            <span class="menu-title">Kembali ke Beranda</span>
+          </a>
+        </div>
         <div class="menu-item">
           <a class="menu-link  @if($title == 'Dashboard') active @endif" href="{{ route('dashboard') }}">
             <span class="menu-icon">
@@ -61,7 +66,23 @@
             <span class="menu-icon">
               <i class="ki-outline ki-questionnaire-tablet fs-2"></i>
             </span>
-            <span class="menu-title">Assesment</span>
+            <span class="menu-title">Hasil</span>
+          </a>
+        </div>
+        <div class="menu-item">
+          <a class="menu-link" href="apps/calendar.html">
+            <span class="menu-icon">
+              <i class="ki-outline ki-cup fs-2"></i>
+            </span>
+            <span class="menu-title">Prestasi</span>
+          </a>
+        </div>
+        <div class="menu-item">
+          <a class="menu-link" href="apps/calendar.html">
+            <span class="menu-icon">
+              <i class="ki-outline ki-user fs-2"></i>
+            </span>
+            <span class="menu-title">User</span>
           </a>
         </div>
       </div>

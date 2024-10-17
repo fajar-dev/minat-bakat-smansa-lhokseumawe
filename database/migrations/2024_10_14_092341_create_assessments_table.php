@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('result_id');
+            $table->unsignedBigInteger('result_id')->nullable();
             $table->string('name');
-            $table->string('age');
+            $table->date('birth_date');
+            $table->string('hobby');
+            $table->json('result')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -25,9 +27,7 @@ return new class extends Migration
 
             $table->foreign('result_id')
             ->references('id')
-            ->on('results')
-            ->cascadeOnDelete()
-            ->cascadeOnUpdate();
+            ->on('results');
         });
     }
 

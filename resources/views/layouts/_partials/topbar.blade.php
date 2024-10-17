@@ -5,7 +5,7 @@
         <i class="ki-outline ki-abstract-14 fs-2"></i>
       </div>
       <a href="index.html">
-        <img alt="Logo" src="assets/media/logos/demo42-small.svg" class="h-30px" />
+        <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="h-30px" />
       </a>
     </div>
     <div class="app-navbar flex-lg-grow-1 container" id="kt_app_header_navbar">
@@ -37,7 +37,7 @@
         </div>
         <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true" id="kt_menu_notifications">
           <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url({{ asset('assets/img/billboard-bg.png') }})">
-            <h3 class="text- fw-semibold px-9 my-8">Notifications</h3>
+            <h3 class="text- fw-bold px-9 my-8">Notifications</h3>
           </div>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="kt_topbar_notifications_2" role="tabpanel">
