@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Result;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,12 +18,13 @@ class Assessment extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'uuid',
         'user_id',
         'result_id',
         'name',
         'birth_date',
         'hobby',
-        'result'
+        'results'
     ];
 
     public function result(): BelongsTo
@@ -38,5 +40,16 @@ class Assessment extends Model
     public function answer(): HasMany
     {
         return $this->hasMany(Answer::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->uuid)) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
     }
 }

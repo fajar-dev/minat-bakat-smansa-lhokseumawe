@@ -8,7 +8,7 @@
           <div class="card card-flush my-20">
             <form method="POST" action="{{ route('assessment.submit') }}" class="card-body" id="form">
               @csrf
-              <input type="hidden" name="type" value="student">
+              <input type="hidden" name="type" value="general">
               <div class="mb-10">
                 <a href="{{route('home')}}" class="btn btn-light  btn-sm">
                   <i class="ki-duotone ki-black-left fs-1"></i>
@@ -19,61 +19,33 @@
                 <h1 class="fw-bold">Tes Minat Bakat Siswa</h1>
                 <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span>
               </div>
-
-              @if ($myAssessment)
-                <div class="alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row p-5 mb-10">
-                  <i class="ki-duotone ki-notification-bing fs-2hx text-primary me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-                  <div class="d-flex flex-column pe-0 pe-sm-10">
-                      <h4 class="fw-semibold">Kamu Telah Melakukan Tes</h4>
-                      <span>Kamu Telah Melakukan tes pada <b>{{ $myAssessment->created_at }}</b>, kamu dapat melihat hasil tes kamu sebelumnya <a href="{{ route('assessment.result', $myAssessment->uuid) }}" class="fw-bold nav-underline">Klik Disini</a></span>
-                  </div>
-
-                  <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn ms-sm-auto btn-danger btn-sm" data-bs-dismiss="alert">
-                      Ulangi Tes Saya
-                  </button>
-                </div>
-              @endif
-
               <div class="row">
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">Nama</label>
-                    <input type="text" readonly name="name" class="form-control form-control-solid" value="{{ Auth::user()->name }}" placeholder="Nama Lengkap"/>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="required form-label">Nama</label>
+                  <input type="text" name="name" class="form-control form-control-solid @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Nama Lengkap"/>
+                  @error('name')
+                  <div class="text-sm text-danger">
+                    {{ $message }}
                   </div>
+                  @enderror
                 </div>
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">NISN</label>
-                    <input type="text" readonly class="form-control form-control-solid" value="{{ Auth::user()->student_identity_number }}" placeholder="NISN"/>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="required form-label">Tanggal Lahir</label>
+                  <input type="date" name="birth_date" class="form-control form-control-solid @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" placeholder="Tanggal Lahir"/>
+                  @error('birth_date')
+                  <div class="text-sm text-danger">
+                    {{ $message }}
                   </div>
+                  @enderror
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">Kelas</label>
-                    <input type="text" readonly class="form-control form-control-solid" value="{{ Auth::user()->class }}" placeholder="Kelas"/>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="required form-label">Hobi</label>
+                  <input type="text" name="hobby" class="form-control form-control-solid @error('hobby') is-invalid @enderror" value="{{ old('hobby') }}" placeholder="Hobi"/>
+                  @error('hobby')
+                  <div class="text-sm text-danger">
+                    {{ $message }}
                   </div>
-                </div>
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">Jurusan</label>
-                    <input type="text" readonly class="form-control form-control-solid" value="{{ Auth::user()->major }}" placeholder="Jurusan"/>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">Tanggal Lahir</label>
-                    <input type="text" readonly name="birth_date" class="form-control form-control-solid" value="{{ Auth::user()->birth_date }}" placeholder="Tanggal Lahir"/>
-                  </div>
-                </div>
-                <div class="col-md">
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="required form-label">Hobi</label>
-                    <input type="text" readonly name="hobby" class="form-control form-control-solid" value="{{ Auth::user()->hobby }}" placeholder="Hobi"/>
-                  </div>
+                  @enderror
                 </div>
               </div>
               <div class="mt-10">

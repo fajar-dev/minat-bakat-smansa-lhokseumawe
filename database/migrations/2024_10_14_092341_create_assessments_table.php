@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('result_id')->nullable();
             $table->string('name');
             $table->date('birth_date');
             $table->string('hobby');
-            $table->json('result')->nullable();
+            $table->json('results')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

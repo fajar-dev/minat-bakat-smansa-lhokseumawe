@@ -69,7 +69,7 @@
           @enderror
         </div>
         <div class="fv-row mb-5">
-          <input type="date" placeholder="" name="birth_date" autocomplete="off" class="form-control bg-transparent @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" />
+          <input type="date" placeholder="Tanggal Lahir" name="birth_date" autocomplete="off" class="form-control bg-transparent @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" />
           @error('birth_date')
           <div class="text-sm text-danger">
             {{ $message }}

@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use App\Models\Result;
-use App\Models\Organization;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Recomended extends Model
+class Score extends Model
 {
     use HasFactory;
-    protected $table = 'recomendeds';
+    protected $table = 'scores';
 
     protected $fillable = [
         'result_id',
-        'organization_id',
+        'question_id',
     ];
 
     public function result(): BelongsTo
@@ -23,8 +23,8 @@ class Recomended extends Model
         return $this->belongsTo(Result::class);
     }
 
-    public function organization(): BelongsTo
+    public function question(): BelongsTo
     {
-        return $this->belongsTo(Organization::class);
+        return $this->belongsTo(Question::class);
     }
 }

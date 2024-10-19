@@ -12,9 +12,9 @@ Route::get('/', function () {
 
 Route::prefix('/assessment')->group(function () {
     Route::get('/student', [AssessmentController::class, 'student'])->name('assessment.student')->middleware(['auth', 'isCompletedUser']);
-    Route::post('/student', [AssessmentController::class, 'studentSubmit'])->name('assessment.student.submit')->middleware(['auth', 'isCompletedUser']);
     Route::get('/general', [AssessmentController::class, 'general'])->name('assessment.general');
-    Route::post('/general', [AssessmentController::class, 'generalSubmit'])->name('assessment.general.submit');
+    Route::post('/submit', [AssessmentController::class, 'studentSubmit'])->name('assessment.submit');
+    Route::get('/{id}/result', [AssessmentController::class, 'result'])->name('assessment.result');
 });
 
 Route::prefix('/auth')->middleware(['guest'])->group(function () {

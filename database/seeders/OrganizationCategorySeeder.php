@@ -14,12 +14,12 @@ class OrganizationCategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Bidang Kepanduan'],
-            ['name' => 'Bidang Olahraga (O2SN)'],
-            ['name' => 'Bidang Seni (FLS2N)'],
-            ['name' => 'Bidang Olimpiade (KSN)'],
-            ['name' => 'Bidang Bahasa'],
-            ['name' => 'Bidang Keagamaan'],
+            ['id' => 1, 'name' => 'Bidang Kepanduan'],
+            ['id' => 2, 'name' => 'Bidang Olahraga (O2SN)'],
+            ['id' => 3, 'name' => 'Bidang Seni (FLS2N)'],
+            ['id' => 4, 'name' => 'Bidang Olimpiade (KSN)'],
+            ['id' => 5, 'name' => 'Bidang Bahasa'],
+            ['id' => 6, 'name' => 'Bidang Keagamaan'],
         ];
 
         DB::table('organization_categories')->insert($categories);
