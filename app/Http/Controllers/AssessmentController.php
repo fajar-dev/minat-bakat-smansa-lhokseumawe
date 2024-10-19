@@ -21,6 +21,7 @@ class AssessmentController extends Controller
         ];
         return view('main.assessment-student',  $data);
     }
+
     public function studentSubmit(Request $request){
         DB::table('assessments')->where(['user_id'=> Auth::user()->id])->delete();
         $assessment = new Assessment();
@@ -38,5 +39,15 @@ class AssessmentController extends Controller
                 'created_at' => Date::now()
             ]);
         }
+    }
+
+    public function studentGeneral(){
+        $data = [
+            'title' => 'Assessment Student',
+            'subTitle' => null,
+            'page_id' => null,
+            'questions' => Question::all(), 
+        ];
+        return view('main.assessment-student',  $data);
     }
 }
