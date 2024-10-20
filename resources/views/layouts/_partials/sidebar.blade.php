@@ -92,7 +92,7 @@
     <div class="">
       <div class="d-flex align-items-center" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true" data-kt-menu-placement="top-start">
         <div class="d-flex flex-center cursor-pointer symbol symbol-circle symbol-40px">
-          <img src="assets/media/avatars/300-1.jpg" alt="image" />
+          <img src="{{ Auth::user()->photo_path ? Storage::url(Auth::user()->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.Auth::user()->name}}" alt="image" />
         </div>
         <div class="d-flex flex-column align-items-start justify-content-center ms-3">
           <span class="text-gray-500 fs-8 fw-semibold">Hello</span>
@@ -103,21 +103,25 @@
         <div class="menu-item px-3">
           <div class="menu-content d-flex align-items-center px-3">
             <div class="symbol symbol-50px me-5">
-              <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
+              <img alt="Logo" src="{{ Auth::user()->photo_path ? Storage::url(Auth::user()->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.Auth::user()->name}}" />
             </div>
             <div class="d-flex flex-column">
-              <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}
-              <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
-              <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+              <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}</div>
+              <span class="fw-semibold text-muted text-hover-primary fs-7">
+                @if (Auth::user()->role == 'user')
+                    {{ Auth::user()->class }} - {{ Auth::user()->major}} 
+                @else
+                  {{ Auth::user()->email }}</span>
+                @endif
             </div>
           </div>
         </div>
         <div class="separator my-2"></div>
         <div class="menu-item px-5">
-          <a href="account/overview.html" class="menu-link px-5">My Profile</a>
+          <a href="{{ route('profile') }}" class="menu-link px-5">My Profile</a>
         </div>
         <div class="menu-item px-5">
-          <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
+          <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
         </div>
       </div>
     </div>

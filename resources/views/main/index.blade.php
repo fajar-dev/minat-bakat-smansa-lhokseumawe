@@ -11,7 +11,7 @@
                 <button class="btn btn-icon btn-active-color-primary me-3 d-flex d-lg-none" id="kt_landing_menu_toggle">
                   <i class="ki-outline ki-abstract-14 fs-2hx"></i>
                 </button>
-                <a href="landing.html">
+                <a href="#">
                   <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="logo-default h-50px h-lg-50px" />
                   <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="logo-sticky h-50px h-lg-50px" />
                 </a>
@@ -39,7 +39,7 @@
                   <div class="d-flex justify-content-end">
                     <div class="d-flex align-items-center" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true" data-kt-menu-placement="top-start">
                       <div class="d-flex flex-center cursor-pointer symbol symbol-circle symbol-40px">
-                        <img src="assets/media/avatars/300-1.jpg" alt="image" />
+                        <img src="{{ Auth::user()->photo_path ? Storage::url(Auth::user()->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='. Auth::user()->name}}" alt="image" />
                       </div>
                       <div class="d-flex flex-column align-items-start justify-content-center ms-3">
                         <span class="text-gray-500 fs-8 fw-semibold">Hello</span>
@@ -50,11 +50,17 @@
                       <div class="menu-item px-3">
                         <div class="menu-content d-flex align-items-center px-3">
                           <div class="symbol symbol-50px me-5">
-                            <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
+                            <img alt="Logo" src="{{ Auth::user()->photo_path ? Storage::url(Auth::user()->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.Auth::user()->name}}" />
                           </div>
                           <div class="d-flex flex-column">
                             <div class="fw-bold d-flex align-items-center fs-5">{{ Auth::user()->name }}</div>
-                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
+                            <span class="fw-semibold text-muted text-hover-primary fs-7">
+                              @if (Auth::user()->role == 'user')
+                                {{ Auth::user()->class }} - {{ Auth::user()->major}} 
+                              @else
+                                {{ Auth::user()->email }}</span>
+                              @endif
+                            </a>
                           </div>
                         </div>
                       </div>

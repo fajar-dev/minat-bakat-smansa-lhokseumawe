@@ -8,7 +8,7 @@
   });
 </script>
 <div class="position-fixed bottom-0 end-0 mt-5 me-5" style="z-index: 9999;">
-  <div class="toast align-items-center bg-dark" id="success" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast align-items-center bg-primary" id="success" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="d-flex">
       <div class="toast-body text-white fs-6">
         {{ session('success') }}

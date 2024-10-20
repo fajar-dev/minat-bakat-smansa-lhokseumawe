@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AssessmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\masterDataController;
 
 Route::get('/', function () {
@@ -40,6 +41,13 @@ Route::prefix('/master-data')->middleware(['auth'])->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
     Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
     Route::get('/intelligence-type', [masterDataController::class, 'intelligenceType'])->name('master-data.intelligence-type');
+});
+
+Route::prefix('/profile')->middleware(['auth'])->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/', [ProfileController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('/signin-method', [ProfileController::class, 'signinUpdate'])->name('profile.signin');
+    Route::post('/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
 });
 
 

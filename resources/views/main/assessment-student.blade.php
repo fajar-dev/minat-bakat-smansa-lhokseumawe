@@ -21,8 +21,8 @@
               </div>
 
               @if ($myAssessment)
-                <div class="alert alert-dismissible bg-light-primary d-flex flex-column flex-sm-row p-5 mb-10">
-                  <i class="ki-duotone ki-notification-bing fs-2hx text-primary me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                <div class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-10">
+                  <i class="ki-duotone ki-notification-bing fs-2hx text-danger me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                   <div class="d-flex flex-column pe-0 pe-sm-10">
                       <h4 class="fw-semibold">Kamu Telah Melakukan Tes</h4>
                       <span>Kamu Telah Melakukan tes pada <b>{{ $myAssessment->created_at }}</b>, kamu dapat melihat hasil tes kamu sebelumnya <a href="{{ route('assessment.result', $myAssessment->uuid) }}" class="fw-bold nav-underline">Klik Disini</a></span>

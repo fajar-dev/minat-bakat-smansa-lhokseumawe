@@ -18,7 +18,10 @@
                 <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span>
               </div>
               <div>
-                <p class="fw-bold mb-1">Nama:</p>
+                <p class="fw-bold mb-1">Tanggal:</p>
+                <span class="text-gray-600">{{ $result->created_at }}</span>
+
+                <p class="fw-bold mb-1 mt-5">Nama:</p>
                 <span class="text-gray-600">{{ $result->name }}</span>
             
                 <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan:</p>
