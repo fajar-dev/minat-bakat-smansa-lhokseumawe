@@ -78,11 +78,11 @@
           </a>
         </div>
         <div class="menu-item">
-          <a class="menu-link" href="apps/calendar.html">
+          <a class="menu-link @if($title == 'Pengguna') active @endif" href="{{ route('user') }}">
             <span class="menu-icon">
               <i class="ki-outline ki-user fs-2"></i>
             </span>
-            <span class="menu-title">User</span>
+            <span class="menu-title">Pengguna</span>
           </a>
         </div>
       </div>
