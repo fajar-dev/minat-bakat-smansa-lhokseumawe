@@ -72,7 +72,7 @@
           <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
             <th>Nama</th>
             <th>Role</th>
-            <th class="text-end">Actions</th>
+            <th class="text-end">Aksi</th>
           </tr>
         </thead>
         <tbody>

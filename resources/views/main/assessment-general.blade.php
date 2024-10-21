@@ -12,7 +12,7 @@
               <div class="mb-10">
                 <a href="{{route('home')}}" class="btn btn-light  btn-sm">
                   <i class="ki-duotone ki-black-left fs-1"></i>
-                  Kembali
+                  Kembali ke beranda
                 </a>
               </div>
               <div class="mb-10">

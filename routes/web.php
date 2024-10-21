@@ -6,14 +6,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\masterDataController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\OrganizationRegistrationController;
 use App\Http\Controllers\ResultController;
 
-Route::get('/', function () {
-    return view('main.index');
-})->name('home');
+Route::get('/', [MainController::class, 'index'])->name('home');
 
 Route::prefix('/assessment')->group(function () {
     Route::get('/student', [AssessmentController::class, 'student'])->name('assessment.student')->middleware(['auth', 'isCompletedUser']);

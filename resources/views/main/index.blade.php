@@ -23,10 +23,13 @@
                       <a class="menu-link nav-link active py-3 px-4 px-xxl-6" href="#kt_body" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Beranda</a>
                     </div>
                     <div class="menu-item">
-                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#how-it-works" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tentang</a>
+                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tentang" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tentang</a>
                     </div>
                     <div class="menu-item">
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tipe-kecerdasan" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tipe Kecerdasan</a>
+                    </div>
+                    <div class="menu-item">
+                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#ekstrakulikuler" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Ekstrakulikuler</a>
                     </div>
                     <div class="menu-item">
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tim Pengabdian</a>
@@ -89,15 +92,38 @@
             <span style="background: linear-gradient(to right, #12CE5D 0%, #FFD80C 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
               <span id="kt_landing_hero_text">SMA Negeri 1 Lhokseumawe</span>
             </span></h1>
-            <a href="index.html" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#category">Mulai Tes</a>
+            <a href="index.html" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#category">Mulai Tes Sekarang</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="mb-n10 mt-20 mb-lg-n20 z-index-2">
-      <div class="container">
+
+    <div class="py-10 py-lg-20 mt-10">
+      <div class="container" id="tentang" data-kt-scroll-offset="{default: 100, lg: 150}">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="octagon mx-auto d-flex w-lg-500px h-300px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{ asset('assets/img/tentang.jpg') }}')"></div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="fs-2hx text-gray-900 mb-2">
+              Tentang
+            </h3>
+            <p class="fs-5">Salah satu faktor pendukung tingginya tingkat pendidikan di sekolah adalah adanya pembinaan minat dan bakat siswa melalui program kegiatan ektrakurikuler yang baik. Melalui website ini, siswa bisa mengetahui minat dan bakatnya sehingga memberikan rekomendasi sebelum memilih kegiatan ekstrakurikuler yang akan diikuti.</p>
+            <ul>
+              <li>Dapat membantu siswa dalam mengetahui dan menemukan minat dan bakat yang dimiliki.</li>
+              <li>Kegiatan yang dipilih lebih optimal dan dapat membantu meningkatkan prestasi siswa.</li>
+              <li>Diharapkan dapat meningkatkan prestasi siswa di bidang ektrakurikuler sekolah.</li>
+              <li>Membantu guru dan pihak sekolah dalam mengelola kegiatan ekstrakurikuler di sekolah.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-10 py-lg-20 mt-1">
+      <div class="container" id="tipe-kecerdasan" data-kt-scroll-offset="{default: 100, lg: 150}">
         <div class="text-center mb-17">
-          <h3 class="fs-2hx text-gray-900 mb-2" id="tipe-kecerdasan" data-kt-scroll-offset="{default: 100, lg: 150}">
+          <h3 class="fs-2hx text-gray-900 mb-2">
             Tipe Kecerdasan
           </h3>
           <div class="fs-5 text-muted fw-bold">Temukan tipe kecerdasan yang kamu miliki</div>
@@ -187,11 +213,73 @@
         </div>
       </div>
     </div>
+
+    <div class="py-10 py-lg-20 mt-1">
+      <div class="container" id="ekstrakulikuler" data-kt-scroll-offset="{default: 100, lg: 150}">
+        <div class="text-center mb-17">
+          <h3 class="fs-2hx text-gray-900 mb-2">
+            Ekstrakulikuler
+          </h3>
+          <div class="fs-5 text-muted fw-bold">Ekstrakulikuler tersedia</div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-flush">
+              <div class="card-body table-responsive">
+                <table class="table align-middle table-row-dashed table-striped fs-6 gy-5">
+                  <thead>
+                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
+                      <th class="min-w-50px ps-3">No</th>
+                      <th class="min-w-150px">Kegiatan</th>
+                      <th class="min-w-200px">Pembina</th>
+                    </tr>
+                  </thead>
+                  <tbody class="fw-semibold text-gray-600">
+                    <?php $no = 1; ?>
+                    <?php foreach ($organization as $org_category): ?>
+                      <tr>
+                        <td colspan="3">
+                          <span class="text-gray-900 ps-3 fw-bold"><?= chr(64 + $no++) ?>.</span>
+                          <span class="text-gray-900 ps-3 fw-bold"> <?= $org_category->name ?></span>
+                        </td>
+                      </tr>
+                      <?php foreach ($org_category->organization as $org): ?>
+                        <tr>
+                          <td>
+                            <span class="ps-5 text-gray-700"><?= $org->id ?></span>
+                          </td>
+                          <td class="pe-0">
+                            <span class="fw-bold text-gray-700"><?= $org->name ?></span>
+                          </td>
+                          <td class="pe-0">
+                            <span class="fw-bold text-gray-700">
+                              <?php 
+                                $coaches = json_decode($org->coach, true);
+                                foreach ($coaches as $coach) {
+                                  echo $coach['name'] . ' (' . $coach['position'] . ')<br>';
+                                }
+                              ?>
+                            </span>
+                          </td>
+                        </tr>
+                      <?php endforeach; ?>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+                
+                <!--end::Table-->
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
-    <div class="py-10 py-lg-20 mt-20">
-      <div class="container">
+    <div class="py-10 py-lg-20 mt-1">
+      <div class="container"  id="team" data-kt-scroll-offset="{default: 100, lg: 150}"">
         <div class="text-center mb-12">
-          <h3 class="fs-2hx text-gray-900 mb-2" id="team" data-kt-scroll-offset="{default: 100, lg: 150}">Tim Pengabdian</h3>
+          <h3 class="fs-2hx text-gray-900 mb-2">Tim Pengabdian</h3>
           <div class="fs-5 text-muted fw-bold">TIm pengabdian Universitas Malikussaleh</div>
         </div>
         <div class="tns tns-default" style="direction: ltr">

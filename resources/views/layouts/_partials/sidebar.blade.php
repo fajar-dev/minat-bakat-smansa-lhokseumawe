@@ -26,6 +26,14 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </div>
+        <div class="menu-item">
+          <a class="menu-link" href="apps/calendar.html">
+            <span class="menu-icon">
+              <i class="ki-outline ki-cup fs-2"></i>
+            </span>
+            <span class="menu-title">Ekstrakulikuler</span>
+          </a>
+        </div>
         <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Data Master') here show @endif">
           <span class="menu-link">
             <span class="menu-icon">
@@ -70,14 +78,6 @@
           </a>
         </div>
         <div class="menu-item">
-          <a class="menu-link" href="apps/calendar.html">
-            <span class="menu-icon">
-              <i class="ki-outline ki-cup fs-2"></i>
-            </span>
-            <span class="menu-title">Prestasi</span>
-          </a>
-        </div>
-        <div class="menu-item">
           <a class="menu-link @if($title == 'Pengguna') active @endif" href="{{ route('user') }}">
             <span class="menu-icon">
               <i class="ki-outline ki-user fs-2"></i>
@@ -118,10 +118,10 @@
         </div>
         <div class="separator my-2"></div>
         <div class="menu-item px-5">
-          <a href="{{ route('profile') }}" class="menu-link px-5">My Profile</a>
+          <a href="{{ route('profile') }}" class="menu-link px-5">Profil Saya</a>
         </div>
         <div class="menu-item px-5">
-          <a href="{{ route('logout') }}" class="menu-link px-5">Sign Out</a>
+          <a href="{{ route('logout') }}" class="menu-link px-5">Keluar</a>
         </div>
       </div>
     </div>

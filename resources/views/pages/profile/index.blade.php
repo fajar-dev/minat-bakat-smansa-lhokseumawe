@@ -49,17 +49,6 @@
           </div>
         </div>
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-semibold fs-6">NISN</label>
-          <div class="col-lg-8 fv-row">
-            <input type="number" name="student_identity_number" class="form-control form-control-lg form-control-solid @error('student_identity_number') is-invalid @enderror" value="{{ old('student_identity_number') ?? Auth::user()->student_identity_number }}" />
-            @error('student_identity_number')
-            <div class="text-sm text-danger">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-        <div class="row mb-6">
           <label class="col-lg-4 col-form-label required fw-semibold fs-6">Tangal Lahir</label>
           <div class="col-lg-8 fv-row">
             <input type="date" name="birth_date" class="form-control form-control-lg form-control-solid @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') ?? Auth::user()->birth_date }}" />
@@ -70,39 +59,52 @@
             @enderror
           </div>
         </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-semibold fs-6">NISN</label>
-          <div class="col-lg-8 fv-row">
-            <input type="text" name="hobby" class="form-control form-control-lg form-control-solid @error('hobby') is-invalid @enderror" value="{{ old('hobby') ?? Auth::user()->hobby }}" />
-            @error('hobby')
-            <div class="text-sm text-danger">
-              {{ $message }}
+        @if (Auth::user()->role == 'user')       
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">NISN</label>
+            <div class="col-lg-8 fv-row">
+              <input type="number" name="student_identity_number" class="form-control form-control-lg form-control-solid @error('student_identity_number') is-invalid @enderror" value="{{ old('student_identity_number') ?? Auth::user()->student_identity_number }}" />
+              @error('student_identity_number')
+              <div class="text-sm text-danger">
+                {{ $message }}
+              </div>
+              @enderror
             </div>
-            @enderror
           </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-semibold fs-6">Kelas</label>
-          <div class="col-lg-8 fv-row">
-            <input type="text" name="class" class="form-control form-control-lg form-control-solid @error('class') is-invalid @enderror" value="{{ old('class') ?? Auth::user()->class }}" />
-            @error('class')
-            <div class="text-sm text-danger">
-              {{ $message }}
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">NISN</label>
+            <div class="col-lg-8 fv-row">
+              <input type="text" name="hobby" class="form-control form-control-lg form-control-solid @error('hobby') is-invalid @enderror" value="{{ old('hobby') ?? Auth::user()->hobby }}" />
+              @error('hobby')
+              <div class="text-sm text-danger">
+                {{ $message }}
+              </div>
+              @enderror
             </div>
-            @enderror
           </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jurusan</label>
-          <div class="col-lg-8 fv-row">
-            <input type="text" name="major" class="form-control form-control-lg form-control-solid @error('major') is-invalid @enderror" value="{{ old('major') ?? Auth::user()->major }}" />
-            @error('major')
-            <div class="text-sm text-danger">
-              {{ $message }}
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Kelas</label>
+            <div class="col-lg-8 fv-row">
+              <input type="text" name="class" class="form-control form-control-lg form-control-solid @error('class') is-invalid @enderror" value="{{ old('class') ?? Auth::user()->class }}" />
+              @error('class')
+              <div class="text-sm text-danger">
+                {{ $message }}
+              </div>
+              @enderror
             </div>
-            @enderror
           </div>
-        </div>
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Jurusan</label>
+            <div class="col-lg-8 fv-row">
+              <input type="text" name="major" class="form-control form-control-lg form-control-solid @error('major') is-invalid @enderror" value="{{ old('major') ?? Auth::user()->major }}" />
+              @error('major')
+              <div class="text-sm text-danger">
+                {{ $message }}
+              </div>
+              @enderror
+            </div>
+          </div>
+        @endif
       </div>
       <div class="card-footer d-flex justify-content-end py-6 px-9">
         <button type="submit" id="submit" class="btn btn-primary">
