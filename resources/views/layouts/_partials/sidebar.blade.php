@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="menu-item">
-          <a class="menu-link" href="apps/calendar.html">
+          <a class="menu-link @if($title == 'Hasil') active @endif" href="{{ route('result') }}">
             <span class="menu-icon">
               <i class="ki-outline ki-questionnaire-tablet fs-2"></i>
             </span>

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Result;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\OrganizationRegistration;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
