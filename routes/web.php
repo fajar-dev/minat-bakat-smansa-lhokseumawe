@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\masterDataController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\OrganizationRegistrationController;
 use App\Http\Controllers\ResultController;
 
 Route::get('/', function () {
@@ -37,6 +39,12 @@ Route::prefix('/auth')->middleware(['auth', 'notCompletedUser'])->group(function
 });
 Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth', 'isCompletedUser']);
+
+Route::prefix('/organization')->group(function () {
+    Route::get('/', [OrganizationController::class, 'index'])->name('organization');
+    Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
+    Route::get('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
+})->middleware(['auth']);
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');

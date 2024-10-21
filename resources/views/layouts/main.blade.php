@@ -15,6 +15,7 @@
 
     @yield('content')
 
+    @include('layouts._partials.alert')
     @include('layouts._partials.foot')
     <!--begin::Vendors Javascript(used for this page only)-->
     @yield('script')
