@@ -109,7 +109,7 @@
                     <a href="#"  data-bs-toggle="modal" data-bs-target="#edit{{$item->id}}" class="menu-link px-3">Edit</a>
                   </div>
                   <div class="menu-item px-3">
-                    <a id="{{ route('user.destroy', $item->id) }}" class="menu-link px-3 btn-del">Delete</a>
+                    <a id="{{ route('user.destroy', $item->id) }}" class="menu-link px-3 btn-del">Hapus</a>
                   </div>
                 </div>
               </td>
