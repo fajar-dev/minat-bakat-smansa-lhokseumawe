@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Role;
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\isCompletedUser;
 use App\Http\Middleware\notCompletedUser;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'isCompletedUser' => isCompletedUser::class,
             'notCompletedUser' => notCompletedUser::class,
+            'role' => Role::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

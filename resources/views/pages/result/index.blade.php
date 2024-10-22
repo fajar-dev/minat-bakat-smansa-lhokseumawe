@@ -119,6 +119,15 @@
           </div>
 
           <div class="modal-body">
+            {{-- @if ($item->user_id) --}}
+                  {{-- @if (!empty($item->user->organizatiionRegistration) && !$item->user->organizatiionRegistration->isEmpty())
+                    @foreach ($item->user->organizatiionRegistration as $registration)
+                      <span>{{ $registration->organization->name }}</span>,
+                    @endforeach
+                  @else
+                    <span>-</span>
+                  @endif --}}
+            {{-- @endif --}}
             <div class="table-responsive">
               <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
                 <tbody class="fw-semibold text-gray-600">

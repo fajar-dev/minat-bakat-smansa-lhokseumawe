@@ -21,14 +21,16 @@ class ProfileController extends Controller
     }
 
     public function profileUpdate(Request $request){
+        $isAdmin = Auth::user()->role === 'admin';
+
         $validator = Validator::make($request->all(), [
             'photo' => 'nullable|sometimes|mimes:jpeg,bsmp,png,jpg,svg,png|max:2000',
             'name' => 'required|string|max:255',
-            'student_identity_number' => 'required|max:255',
-            'class' => 'required|string|max:255',
-            'major' => 'required|string|max:255',
-            'birth_date' => 'required|date|max:255',
-            'hobby' => 'required|string|max:255',
+            'student_identity_number' => $isAdmin ? 'nullable|sometimes|max:255' : 'required|max:255',
+            'class' => $isAdmin ? 'nullable|sometimes|string|max:255' : 'required|string|max:255',
+            'major' => $isAdmin ? 'nullable|sometimes|string|max:255' : 'required|string|max:255',
+            'birth_date' => $isAdmin ? 'nullable|sometimes|date|max:255' : 'required|date|max:255',
+            'hobby' => $isAdmin ? 'nullable|sometimes|string|max:255' : 'required|string|max:255',    
         ]);
         if ($validator->fails()) {
             return redirect()->route('profile')->with('error', 'Validation Error')->withInput()->withErrors($validator);

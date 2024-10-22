@@ -26,73 +26,77 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </div>
-        <div class="menu-item">
-          <a class="menu-link @if($title == 'Ekstrakulikuler') active @endif" href="{{ route('organization') }}">
-            <span class="menu-icon">
-              <i class="ki-outline ki-cup fs-2"></i>
+        @if (Auth::user()->role == 'user')
+          <div class="menu-item">
+            <a class="menu-link @if($title == 'Ekstrakulikuler') active @endif" href="{{ route('organization') }}">
+              <span class="menu-icon">
+                <i class="ki-outline ki-cup fs-2"></i>
+              </span>
+              <span class="menu-title">Ekstrakulikuler</span>
+            </a>
+          </div>
+        @endif
+        @if (Auth::user()->role == 'admin')
+          <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Data Master') here show @endif">
+            <span class="menu-link">
+              <span class="menu-icon">
+                <i class="ki-outline ki-external-drive fs-2"></i>
+              </span>
+              <span class="menu-title">Data Master</span>
+              <span class="menu-arrow"></span>
             </span>
-            <span class="menu-title">Ekstrakulikuler</span>
-          </a>
-        </div>
-        <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Data Master') here show @endif">
-          <span class="menu-link">
-            <span class="menu-icon">
-              <i class="ki-outline ki-external-drive fs-2"></i>
-            </span>
-            <span class="menu-title">Data Master</span>
-            <span class="menu-arrow"></span>
-          </span>
-          <div class="menu-sub menu-sub-accordion">
-            <div class="menu-item">
-              <a class="menu-link @if($subTitle == 'Ekstrakulikuler') active @endif" href="{{ route('master-data.organization') }}">
-                <span class="menu-bullet">
-                  <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">Ekstrakulikuler</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a class="menu-link @if($subTitle == 'Pertanyaan') active @endif" href="{{ route('master-data.question') }}">
-                <span class="menu-bullet">
-                  <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">Pertanyaan</span>
-              </a>
-            </div>
-            <div class="menu-item">
-              <a class="menu-link @if($subTitle == 'Tipe Kecerdasan') active @endif" href="{{ route('master-data.intelligence-type') }}">
-                <span class="menu-bullet">
-                  <span class="bullet bullet-dot"></span>
-                </span>
-                <span class="menu-title">Tipe Kecerdasan</span>
-              </a>
+            <div class="menu-sub menu-sub-accordion">
+              <div class="menu-item">
+                <a class="menu-link @if($subTitle == 'Ekstrakulikuler') active @endif" href="{{ route('master-data.organization') }}">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Ekstrakulikuler</span>
+                </a>
+              </div>
+              <div class="menu-item">
+                <a class="menu-link @if($subTitle == 'Pertanyaan') active @endif" href="{{ route('master-data.question') }}">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Pertanyaan</span>
+                </a>
+              </div>
+              <div class="menu-item">
+                <a class="menu-link @if($subTitle == 'Tipe Kecerdasan') active @endif" href="{{ route('master-data.intelligence-type') }}">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Tipe Kecerdasan</span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="menu-item">
-          <a class="menu-link @if($title == 'Siswa') active @endif" href="">
-            <span class="menu-icon">
-              <i class="ki-outline ki-user fs-2"></i>
-            </span>
-            <span class="menu-title">Siswa</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a class="menu-link @if($title == 'Hasil') active @endif" href="{{ route('result') }}">
-            <span class="menu-icon">
-              <i class="ki-outline ki-questionnaire-tablet fs-2"></i>
-            </span>
-            <span class="menu-title">Hasil</span>
-          </a>
-        </div>
-        <div class="menu-item">
-          <a class="menu-link @if($title == 'Pengguna') active @endif" href="{{ route('user') }}">
-            <span class="menu-icon">
-              <i class="ki-outline ki-user fs-2"></i>
-            </span>
-            <span class="menu-title">Pengguna</span>
-          </a>
-        </div>
+          <div class="menu-item">
+            <a class="menu-link @if($title == 'Siswa') active @endif" href="{{ route('student') }}">
+              <span class="menu-icon">
+                <i class="ki-outline ki-people fs-2"></i>
+              </span>
+              <span class="menu-title">Siswa</span>
+            </a>
+          </div>
+          <div class="menu-item">
+            <a class="menu-link @if($title == 'Hasil') active @endif" href="{{ route('result') }}">
+              <span class="menu-icon">
+                <i class="ki-outline ki-questionnaire-tablet fs-2"></i>
+              </span>
+              <span class="menu-title">Hasil</span>
+            </a>
+          </div>
+          <div class="menu-item">
+            <a class="menu-link @if($title == 'Pengguna') active @endif" href="{{ route('user') }}">
+              <span class="menu-icon">
+                <i class="ki-outline ki-user fs-2"></i>
+              </span>
+              <span class="menu-title">Pengguna</span>
+            </a>
+          </div>
+        @endif
       </div>
     </div>
   </div>

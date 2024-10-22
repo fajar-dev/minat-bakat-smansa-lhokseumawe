@@ -9,13 +9,13 @@ use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\masterDataController;
 use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\OrganizationRegistrationController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 
 Route::prefix('/assessment')->group(function () {
-    Route::get('/student', [AssessmentController::class, 'student'])->name('assessment.student')->middleware(['auth', 'isCompletedUser']);
+    Route::get('/student', [AssessmentController::class, 'student'])->name('assessment.student')->middleware(['auth', 'isCompletedUser', 'role:user']);
     Route::get('/general', [AssessmentController::class, 'general'])->name('assessment.general');
     Route::post('/submit', [AssessmentController::class, 'studentSubmit'])->name('assessment.submit');
     Route::get('/{id}/result', [AssessmentController::class, 'result'])->name('assessment.result');
@@ -32,7 +32,7 @@ Route::prefix('/auth')->group(function () {
     Route::post('/forget/{token}/reset', [AuthController::class, 'resetSubmit'])->name('reset.submit');
 })->middleware(['guest']);
 
-Route::prefix('/auth')->middleware(['auth', 'notCompletedUser'])->group(function () {
+Route::prefix('/auth')->middleware(['auth', 'notCompletedUser', 'role:user'])->group(function () {
     Route::get('/register/completed', [AuthController::class, 'registrationCompleted'])->name('registration.completed');
     Route::post('/register/completed', [AuthController::class, 'registrationCompletedSubmit'])->name('registration.completed.submit');
 });
@@ -43,25 +43,29 @@ Route::prefix('/organization')->group(function () {
     Route::get('/', [OrganizationController::class, 'index'])->name('organization');
     Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
     Route::get('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
-})->middleware(['auth', 'isCompletedUser']);
+})->middleware(['auth', 'isCompletedUser', 'role:user']);
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
     Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
     Route::get('/intelligence-type', [masterDataController::class, 'intelligenceType'])->name('master-data.intelligence-type');
-})->middleware(['auth']);
+})->middleware(['auth', 'role:admin']);
+
+Route::prefix('/student')->group(function () {
+    Route::get('/', [StudentController::class, 'index'])->name('student');
+})->middleware(['auth', 'role:admin']);
 
 Route::prefix('/result')->group(function () {
     Route::get('/', [ResultController::class, 'index'])->name('result');
     Route::get('/export', [ResultController::class, 'export'])->name('result.export');
-})->middleware(['auth']);
+})->middleware(['auth', 'role:admin']);
 
 Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'user'])->name('user');
     Route::post('/', [UserController::class, 'store'])->name('user.store');
     Route::post('/{id}/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/{id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
-})->middleware('auth');
+})->middleware(['auth', 'role:admin']);
 
 Route::prefix('/profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profile');

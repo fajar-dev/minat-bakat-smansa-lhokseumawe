@@ -90,7 +90,7 @@
                 </div>
               </td>
               <td>
-                <span class="text-gray-600">{{ $item->role }}</span>
+                <span class="text-gray-800">{{ $item->role }}</span>
               </td>
               <td class="text-end">
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary btn-flex btn-center text-gray-700" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
