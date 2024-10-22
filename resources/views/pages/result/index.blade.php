@@ -20,12 +20,14 @@
         </form>
         <div>
           <a href="{{ route('result.export', ['q' => request('q', 'semua')]) }}" id="submit" class="btn btn-success">
-            <span class="indicator-label d-flex align-items-center">
-              <i class="ki-duotone ki-file-down fs-3 pe-3">
-                <span class="path1"></span>
-                <span class="path2"></span>
-              </i>
-              Export
+            <span class="indicator-label">
+              <div class="d-flex align-items-center">
+                <i class="ki-duotone ki-file-down fs-3 pe-3">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+                </i>
+                Export
+              </div>
             </span>
             <span class="indicator-progress" style="display: none;">Loading... 
                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
