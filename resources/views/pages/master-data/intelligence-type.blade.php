@@ -14,20 +14,20 @@
           <th class="min-w-100px">Rekomendasi Ekstrakulikuler</th>
         </tr>
       </thead>
-      <tbody class="fw-semibold text-gray-600">
+      <tbody class="fw-semibold text-gray-800">
         @foreach ($type as $item)
           <tr>
             <td>
-              <span class="text-gray-800 text-hover-primary fw-bold ps-3">{{ $item->id }}</span>
+              <span class="text-gray-800 text-hover-primary  ps-3">{{ $item->id }}</span>
             </td>
             <td class="pe-0">
-              <span class="fw-bold">{{ $item->type }}</span>
+              <span>{{ $item->type }}</span>
             </td>
             <td class="pe-0">
-              <span class="fw-bold">{{ $item->content }}</span>
+              <span>{{ $item->content }}</span>
             </td>
             <td class="pe-0">
-              <span class="fw-bold">{{ $item->development_area }}</span>
+              <span>{{ $item->development_area }}</span>
             </td>
             <td class="pe-0">
               @foreach ($item->recomended as $data)

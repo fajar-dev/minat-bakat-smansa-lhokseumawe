@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card bgi-no-repeat bgi-position-x-end bgi-size-cover"  style="background-size: auto 100%; background-image: url({{ asset('assets/images/abstract.svg') }})">
+<div class="card bgi-no-repeat bgi-position-x-end bgi-size-cover"  style="background-size: auto 100%; background-image: url('https://preview.keenthemes.com/metronic8/demo4/assets/media/misc/taieri.svg')">
   <div class="card-body pt-9 pb-0">
     <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
       <div class="flex-grow-1">

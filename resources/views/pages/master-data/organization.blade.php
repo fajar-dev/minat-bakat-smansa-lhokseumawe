@@ -11,7 +11,7 @@
           <th class="min-w-200px">Pembina</th>
         </tr>
       </thead>
-      <tbody class="fw-semibold text-gray-600">
+      <tbody class="fw-semibold text-gray-800">
         <?php $no = 1; ?>
         <?php foreach ($organization as $org_category): ?>
           <tr>
@@ -26,10 +26,10 @@
                 <span class="ps-5"><?= $org->id ?></span>
               </td>
               <td class="pe-0">
-                <span class="fw-bold"><?= $org->name ?></span>
+                <span><?= $org->name ?></span>
               </td>
               <td class="pe-0">
-                <span class="fw-bold">
+                <span>
                   <?php 
                     $coaches = json_decode($org->coach, true);
                     foreach ($coaches as $coach) {

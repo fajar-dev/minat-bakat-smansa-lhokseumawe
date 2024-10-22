@@ -75,7 +75,7 @@
             <th class="text-end">Aksi</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="fw-semibold text-gray-800">
           @foreach ($user as $item)     
             <tr>
               <td class="d-flex align-items-center min-w-150px">

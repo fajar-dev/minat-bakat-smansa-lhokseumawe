@@ -1,6 +1,6 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
   <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8 " id="kt_app_sidebar_logo">
-    <a href="index.html" class="text-center">
+    <a href="#" class="text-center">
       <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="h-65px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
       <img alt="Logo" src="{{ asset('assets/img/logo-sekolah.png') }}" class="h-65px theme-dark-show" />
     </a>
@@ -27,7 +27,7 @@
           </a>
         </div>
         <div class="menu-item">
-          <a class="menu-link" href="apps/calendar.html">
+          <a class="menu-link @if($title == 'Ekstrakulikuler') active @endif" href="{{ route('organization') }}">
             <span class="menu-icon">
               <i class="ki-outline ki-cup fs-2"></i>
             </span>

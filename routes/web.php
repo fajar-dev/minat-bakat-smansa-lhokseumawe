@@ -43,7 +43,7 @@ Route::prefix('/organization')->group(function () {
     Route::get('/', [OrganizationController::class, 'index'])->name('organization');
     Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
     Route::get('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
-})->middleware(['auth']);
+})->middleware(['auth', 'isCompletedUser']);
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');

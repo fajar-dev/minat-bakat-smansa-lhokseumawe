@@ -11,14 +11,14 @@
           <th class="min-w-200px">Pertanyaan</th>
         </tr>
       </thead>
-      <tbody class="fw-semibold text-gray-600">
+      <tbody class="fw-semibold text-gray-800">
         @foreach ($question as $item)
           <tr>
             <td>
-              <span class="text-gray-800 text-hover-primary fw-bold ps-3">{{ $item->id }}</span>
+              <span class="ps-3">{{ $item->id }}</span>
             </td>
             <td class="pe-0">
-              <span class="fw-bold">{{ $item->text }}</span>
+              <span>{{ $item->text }}</span>
             </td>
           </tr>
         @endforeach

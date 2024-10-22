@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\OrganizationRegistration;
@@ -9,6 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class OrganizationController extends Controller
 {
+    public function index(){
+        $data = [
+            'title' => 'Ekstrakulikuler',
+            'subTitle' => null,
+            'page_id' => null,
+            'ekstrakulikuler' => Organization::all(),
+            'organizationRegistration' => OrganizationRegistration::where('user_id', Auth::user()->id)->get()
+        ];
+        return view('pages.organization.index',  $data);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

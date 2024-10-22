@@ -22,39 +22,40 @@
             <th>Rekomendasi Ekstrakulikuler</th>
             <th>Pilihan Ekstrakulikuler</th>
             <th>Kategori Peserta</th>
+            <th>Aksi</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="fw-semibold text-gray-800">
           @foreach ($assessment as $index => $item)     
             <tr>
               <td>
-                <span class="text-gray-800 text-hover-primary fw-bold ps-3">{{ $index + 1 }}</span>
+                <span class="text-gray-900 fw-bold ps-3">{{ $index + 1 }}</span>
               </td>
               <td class="pe-0">
-                <span class="text-gray-700">{{ $item->name }}</span>
+                <span>{{ $item->name }}</span>
               </td>
               <td class="pe-0">
-                <span class="text-gray-700">{{ $item->hobby }}</span>
+                <span>{{ $item->hobby }}</span>
               </td>
               <td class="pe-0">
-                <span class="text-gray-700">{{ $item->result->type }}</span>
+                <span>{{ $item->result->type }}</span>
               </td>
               <td class="pe-0">
                 @foreach ($item->result->recomended as $organization)
-                  <span class="text-gray-700">{{ $organization->organization->name}}</span>,
+                  <span>{{ $organization->organization->name}}</span>,
                 @endforeach
               </td>
               <td>
                 @if ($item->user_id)
                   @if (!empty($item->user->organizatiionRegistration) && !$item->user->organizatiionRegistration->isEmpty())
                     @foreach ($item->user->organizatiionRegistration as $registration)
-                      <span class="text-gray-700">{{ $registration->organization->name }}</span>,
+                      <span>{{ $registration->organization->name }}</span>,
                     @endforeach
                   @else
-                    <span class="text-gray-700">-</span>
+                    <span>-</span>
                   @endif
                 @else
-                  <span class="text-gray-700">-</span>
+                  <span>-</span>
                 @endif
               </td>
               <td>
@@ -64,6 +65,11 @@
                   <span class="badge badge-light-primary">Umum</span>
                 @endif
               </td>
+              <td class="pe-0">
+                <div>
+                  <button data-bs-toggle="modal" data-bs-target="#detail{{$item->id}}" class="btn btn-primary btn-sm">Detail</button>
+                </div>
+              </td>
             </tr>
           @endforeach
         </tbody>
@@ -72,4 +78,50 @@
     </div>
   </div>
 </div>
+
+@foreach ($assessment as $index => $item)     
+<div class="modal fade" tabindex="-1" id="detail{{$item->id}}">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3 class="modal-title">Detail Jawaban</h3>
+
+              <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                  <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+              </div>
+          </div>
+
+          <div class="modal-body">
+            <div class="table-responsive">
+              <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
+                <tbody class="fw-semibold text-gray-600">
+                  <thead>
+                    <tr class="fw-bold fs-6 text-gray-800">
+                      <th>Pertanyaan</th>
+                      <th class="text-center">Rangking</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($item->answer as $data)
+                    <tr>
+                      <td class="py-2 my-0">{{ $data->question->text }}</td>
+                      <td class="py-2 my-0 text-center">{{ $data->value }}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+@endforeach
+@endsection
+
+@section('script')
+<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script>
+  $("#table").DataTable();
+</script>
 @endsection
