@@ -103,6 +103,10 @@
 @endsection
 
 @section('script')
+<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script>
+  $("#table").DataTable();
+</script>
 <script>
   document.getElementById('form').addEventListener('submit', function() {
     var submitButton = document.getElementById('submit');

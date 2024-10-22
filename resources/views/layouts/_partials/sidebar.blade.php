@@ -70,6 +70,14 @@
           </div>
         </div>
         <div class="menu-item">
+          <a class="menu-link @if($title == 'Siswa') active @endif" href="">
+            <span class="menu-icon">
+              <i class="ki-outline ki-user fs-2"></i>
+            </span>
+            <span class="menu-title">Siswa</span>
+          </a>
+        </div>
+        <div class="menu-item">
           <a class="menu-link @if($title == 'Hasil') active @endif" href="{{ route('result') }}">
             <span class="menu-icon">
               <i class="ki-outline ki-questionnaire-tablet fs-2"></i>

@@ -53,6 +53,7 @@ Route::prefix('/master-data')->group(function () {
 
 Route::prefix('/result')->group(function () {
     Route::get('/', [ResultController::class, 'index'])->name('result');
+    Route::get('/export', [ResultController::class, 'export'])->name('result.export');
 })->middleware(['auth']);
 
 Route::prefix('/user')->group(function () {

@@ -9,10 +9,35 @@
         <span class="text-muted fw-semibold fs-7">Hasil Assessment</span>
       </h3>
     </div>
+    <div class="card-toolbar">
+      <div class="d-flex">
+        <form method="GET" class="me-5">
+            <select class="form-select form-select-solid w-100 me-20" name="q" onchange="this.form.submit()">
+                <option value="semua" {{ request('q') == 'semua' ? 'selected' : '' }}>Semua</option>
+                <option value="siswa" {{ request('q') == 'siswa' ? 'selected' : '' }}>Siswa</option>
+                <option value="umum" {{ request('q') == 'umum' ? 'selected' : '' }}>Umum</option>
+            </select>
+        </form>
+        <div>
+          <a href="{{ route('result.export', ['q' => request('q', 'semua')]) }}" id="submit" class="btn btn-success">
+            <span class="indicator-label d-flex align-items-center">
+              <i class="ki-duotone ki-file-down fs-3 pe-3">
+                <span class="path1"></span>
+                <span class="path2"></span>
+              </i>
+              Export
+            </span>
+            <span class="indicator-progress" style="display: none;">Loading... 
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </a>
+        </div>
+    </div>
+    </div>
   </div>
   <div class="card-body pt-0">
     <div class="table-responsive">
-      <table id="table" class="table table-row-dashed fs-6 gy-5">
+      <table id="table" class="table table-row-dashed table-striped fs-6 gy-5">
         <thead>
           <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
             <th>NO</th>
@@ -123,5 +148,30 @@
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <script>
   $("#table").DataTable();
+</script>
+
+<script>
+  document.getElementById('submit').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var submitButton = document.getElementById('submit');
+    submitButton.querySelector('.indicator-label').style.display = 'none';
+    submitButton.querySelector('.indicator-progress').style.display = 'inline-block';
+    submitButton.setAttribute('disabled', 'disabled');
+
+    var downloadLink = document.createElement('a');
+    downloadLink.href = submitButton.href;
+    downloadLink.setAttribute('download', '');
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+
+    setTimeout(function() {
+      submitButton.querySelector('.indicator-label').style.display = 'inline-block';
+      submitButton.querySelector('.indicator-progress').style.display = 'none';
+      submitButton.removeAttribute('disabled');
+    }, 3000);
+  });
 </script>
 @endsection
