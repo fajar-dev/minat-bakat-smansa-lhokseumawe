@@ -87,7 +87,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'photo' => 'required|mimes:jpeg,bmp,png,jpg,svg,png|max:2000',
             'name' => 'required|string|max:255',
-            'student_identity_number' => 'required|max:255',
+            'student_identity_number' => 'required|max:255|unique:users',
             'class' => 'required|string|max:255',
             'major' => 'required|string|max:255',
             'birth_date' => 'required|date|max:255',

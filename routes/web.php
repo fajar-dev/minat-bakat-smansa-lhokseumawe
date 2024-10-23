@@ -43,9 +43,8 @@ Route::prefix('/organization')->group(function () {
     Route::group(['middleware' => ['auth', 'isCompletedUser', 'role:user']], function () {
         Route::get('/', [OrganizationController::class, 'index'])->name('organization');
         Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
-        Route::delete('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
     });
-
+    Route::get('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy')->middleware('auth');
     Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/{id}/data', [OrganizationController::class, 'data'])->name('organization.data');
     });

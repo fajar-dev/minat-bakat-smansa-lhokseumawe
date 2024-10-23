@@ -49,11 +49,17 @@ class OrganizationController extends Controller
         return redirect()->back()->with('success', 'Berhasil mendaftarkan ekstrakulikuler');
     }
 
-    public function destroy($id){
-        $user = OrganizationRegistration::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
+    public function destroy($id)
+    {
+        $user = OrganizationRegistration::where('id', $id);
+        if (Auth::user()->role == 'user') {
+            $user = $user->where('user_id', Auth::user()->id);
+        }
+        $user = $user->firstOrFail();
         $user->delete();
-        return redirect()->back()->with('success','Berhasil menghapus daftar ekstrakulikuler');
+        return redirect()->back()->with('success', 'Berhasil menghapus daftar ekstrakulikuler');
     }
+
 
     public function data($id){
         $organization = Organization::where('id', $id)->firstOrFail();

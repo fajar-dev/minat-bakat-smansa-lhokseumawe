@@ -6,7 +6,7 @@
     <div class="card-title">
       <h3 class="card-title align-items-start flex-column">
         <span class="card-label fw-bold fs-3 mb-1">Ekstrakulikuler</span>
-        <span class="text-muted fw-semibold fs-7">Ekstrakulikuler Kamu</span>
+        <span class="text-muted fw-semibold fs-7">Ekstrakulikuler yang saya pilih</span>
       </h3>
     </div>
     <div class="card-toolbar">
