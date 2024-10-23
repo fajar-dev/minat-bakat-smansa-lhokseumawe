@@ -7,7 +7,7 @@
         @csrf
         <div class="mb-11">
           <h1 class="text-gray-900 fw-bolder mb-3 fs-3qx">Registration</h1>
-          <div class="text-gray-500 fw-semibold fs-5">Completed Your Account</div>
+          <div class="text-gray-500 fw-semibold fs-5">Lengkapi data diri anda</div>
         </div>
         <div class="fv-row mb-10">
           <label class="d-block fw-semibold fs-6 mb-5">
@@ -36,7 +36,7 @@
           @enderror
         </div>
         <div class="fv-row mb-5">
-          <input type="text" placeholder="Full Name" name="name" autocomplete="off" class="form-control bg-transparent @error('name') is-invalid @enderror" value="{{ Auth::user()->name }}" />
+          <input type="text" placeholder="Nama Lengkap" name="name" autocomplete="off" class="form-control bg-transparent @error('name') is-invalid @enderror" value="{{ Auth::user()->name }}" />
           @error('name')
           <div class="text-sm text-danger">
             {{ $message }}
@@ -69,13 +69,13 @@
           @enderror
         </div>
         <div class="fv-row mb-5">
-          <input type="date" placeholder="Tanggal Lahir" name="birth_date" autocomplete="off" class="form-control bg-transparent @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" />
+          <input type="text" id="birthDateInput" placeholder="Tanggal Lahir" name="birth_date" autocomplete="off" class="form-control bg-transparent @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}" onfocus="(this.type='date')" onblur="(this.type='text')" />
           @error('birth_date')
           <div class="text-sm text-danger">
             {{ $message }}
           </div>
           @enderror
-        </div>
+        </div>        
         <div class="fv-row mb-5">
           <input type="text" placeholder="Hobi (mis: Membaca)" name="hobby" autocomplete="off" class="form-control bg-transparent @error('hobby') is-invalid @enderror" value="{{ old('hobby') }}" />
           @error('hobby')

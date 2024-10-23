@@ -7,10 +7,10 @@
         @csrf
         <div class="mb-11">
           <h1 class="text-gray-900 fw-bolder mb-3 fs-3qx">Welcome!</h1>
-          <div class="text-gray-500 fw-semibold fs-5">Registered your account</div>
+          <div class="text-gray-500 fw-semibold fs-5">Daftarkan akun anda</div>
         </div>
         <div class="fv-row mb-8">
-          <input type="text" placeholder="Full Name" name="name" autocomplete="off" class="form-control bg-transparent @error('name') is-invalid @enderror" value="{{ old('name') }}" />
+          <input type="text" placeholder="Nama Lengkap" name="name" autocomplete="off" class="form-control bg-transparent @error('name') is-invalid @enderror" value="{{ old('name') }}" />
           @error('name')
           <div class="text-sm text-danger">
             {{ $message }}
@@ -41,7 +41,7 @@
             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
           </button>
         </div>
-        <div class="text-gray-500 text-center fw-semibold fs-6">Have an account? 
+        <div class="text-gray-500 text-center fw-semibold fs-6">Sudah punya akun? 
         <a href="{{ route('login') }}" class="link-primary" >Sign-In</a></div>
       </form>
     </div>
