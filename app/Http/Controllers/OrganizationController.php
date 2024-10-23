@@ -13,7 +13,7 @@ class OrganizationController extends Controller
     public function index(){
         $data = [
             'title' => 'Ekstrakulikuler',
-            'subTitle' => null,
+            'subTitle' => "Ekstrakulikuler Saya",
             'page_id' => null,
             'ekstrakulikuler' => Organization::all(),
             'organizationRegistration' => OrganizationRegistration::where('user_id', Auth::user()->id)->get()
@@ -53,6 +53,18 @@ class OrganizationController extends Controller
         $user = OrganizationRegistration::where('id', $id)->where('user_id', Auth::user()->id)->firstOrFail();
         $user->delete();
         return redirect()->back()->with('success','Berhasil menghapus daftar ekstrakulikuler');
+    }
+
+    public function data($id){
+        $organization = Organization::where('id', $id)->firstOrFail();
+        $data = [
+            'title' => 'Ekstrakulikuler',
+            'subTitle' => $organization->name,
+            'page_id' => null,
+            'ekstrakulikuler' => Organization::all(),
+            'organizationRegistration' => OrganizationRegistration::where('organization_id', $id)->get()
+        ];
+        return view('pages.organization.data',  $data);
     }
 
 }

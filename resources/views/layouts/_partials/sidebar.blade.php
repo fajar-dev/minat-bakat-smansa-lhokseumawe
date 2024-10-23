@@ -26,16 +26,6 @@
             <span class="menu-title">Dashboard</span>
           </a>
         </div>
-        @if (Auth::user()->role == 'user')
-          <div class="menu-item">
-            <a class="menu-link @if($title == 'Ekstrakulikuler') active @endif" href="{{ route('organization') }}">
-              <span class="menu-icon">
-                <i class="ki-outline ki-cup fs-2"></i>
-              </span>
-              <span class="menu-title">Ekstrakulikuler</span>
-            </a>
-          </div>
-        @endif
         @if (Auth::user()->role == 'admin')
           <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Data Master') here show @endif">
             <span class="menu-link">
@@ -72,6 +62,41 @@
               </div>
             </div>
           </div>
+        @endif
+        <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Ekstrakulikuler') here show @endif">
+          <span class="menu-link">
+            <span class="menu-icon">
+              <i class="ki-outline ki-cup fs-2"></i>
+            </span>
+            <span class="menu-title">Ekstrakulikuler</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <div class="menu-sub menu-sub-accordion">
+            @if (Auth::user()->role == 'user')
+              <div class="menu-item">
+                <a class="menu-link @if($subTitle == 'Ekstrakulikuler Saya') active @endif" href="{{ route('organization') }}">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Ekstrakulikuler Saya</span>
+                </a>
+              </div>
+            @endif
+            @if (Auth::user()->role == 'admin')
+              @foreach (App\Models\Organization::all() as $organizationData)
+                <div class="menu-item">
+                  <a class="menu-link @if($subTitle == $organizationData->name ) active @endif" href="{{ route('organization.data', $organizationData->id) }}">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">{{ $organizationData->name }}</span>
+                  </a>
+                </div>
+              @endforeach
+            @endif
+          </div>
+        </div>
+        @if (Auth::user()->role == 'admin')
           <div class="menu-item">
             <a class="menu-link @if($title == 'Siswa') active @endif" href="{{ route('student') }}">
               <span class="menu-icon">

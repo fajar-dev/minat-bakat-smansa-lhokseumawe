@@ -40,10 +40,16 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('logout')->m
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth', 'isCompletedUser']);
 
 Route::prefix('/organization')->group(function () {
-    Route::get('/', [OrganizationController::class, 'index'])->name('organization');
-    Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
-    Route::get('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
-})->middleware(['auth', 'isCompletedUser', 'role:user']);
+    Route::group(['middleware' => ['auth', 'isCompletedUser', 'role:user']], function () {
+        Route::get('/', [OrganizationController::class, 'index'])->name('organization');
+        Route::post('/', [OrganizationController::class, 'store'])->name('organization.store');
+        Route::delete('/{id}', [OrganizationController::class, 'destroy'])->name('organization.destroy');
+    });
+
+    Route::group(['middleware' => ['auth', 'role:admin']], function () {
+        Route::get('/{id}/data', [OrganizationController::class, 'data'])->name('organization.data');
+    });
+});
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
@@ -53,6 +59,9 @@ Route::prefix('/master-data')->group(function () {
 
 Route::prefix('/student')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('student');
+    Route::get('/{id}/detail', [StudentController::class, 'detail'])->name('student.detail');
+    Route::get('/{id}/assessment', [StudentController::class, 'assessment'])->name('student.assessment');
+    Route::get('/{id}/organization', [StudentController::class, 'organization'])->name('student.organization');
 })->middleware(['auth', 'role:admin']);
 
 Route::prefix('/result')->group(function () {

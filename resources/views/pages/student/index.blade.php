@@ -51,7 +51,7 @@
               </td>
               <td class="pe-0 text-end">
                 <div>
-                  <button data-bs-toggle="modal" data-bs-target="#detail{{$item->id}}" class="btn btn-primary btn-sm">Detail</button>
+                  <a href="{{ route('student.detail', $item->id) }}" class="btn btn-primary btn-sm">Detail</a>
                 </div>
               </td>
             </tr>
