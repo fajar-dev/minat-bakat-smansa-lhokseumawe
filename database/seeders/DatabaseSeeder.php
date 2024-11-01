@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\ScoreSeeder;
 use Database\Seeders\ResultSeeder;
+use Database\Seeders\RiasecSeeder;
 use Database\Seeders\QuestionSeeder;
 use Database\Seeders\RecomemdedSeeder;
 use Database\Seeders\OrganizationSeeder;
@@ -25,7 +27,9 @@ class DatabaseSeeder extends Seeder
             QuestionSeeder::class,
             ResultSeeder::class,
             RecomemdedSeeder::class,
-            ScoreSeeder::class
+            ScoreSeeder::class,
+            RiasecSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

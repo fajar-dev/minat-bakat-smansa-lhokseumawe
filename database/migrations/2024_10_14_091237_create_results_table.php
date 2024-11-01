@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->text('content');
-            $table->text('development_area');
+            $table->text('development_area')->nullable();
+            $table->enum('category', ['intelligence', 'personality']);
             $table->timestamps();
         });
     }

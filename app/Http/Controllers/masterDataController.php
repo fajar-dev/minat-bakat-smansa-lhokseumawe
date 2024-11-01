@@ -35,8 +35,18 @@ class masterDataController extends Controller
             'title' => 'Data Master',
             'subTitle' => 'Tipe Kecerdasan',
             'page_id' => null,
-            'type' => Result::all()
+            'type' => Result::where('category', 'intelligence')->get()
         ];
         return view('pages.master-data.intelligence-type',  $data);
+    }
+
+    public function personalityType(){
+        $data = [
+            'title' => 'Data Master',
+            'subTitle' => 'Tipe Kepribadian',
+            'page_id' => null,
+            'type' => Result::where('category', 'personality')->get()
+        ];
+        return view('pages.master-data.personality-type',  $data);
     }
 }

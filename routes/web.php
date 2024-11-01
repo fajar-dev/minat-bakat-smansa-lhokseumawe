@@ -54,6 +54,7 @@ Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
     Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
     Route::get('/intelligence-type', [masterDataController::class, 'intelligenceType'])->name('master-data.intelligence-type');
+    Route::get('/personality-type', [masterDataController::class, 'personalityType'])->name('master-data.personality-type');
 })->middleware(['auth', 'role:admin']);
 
 Route::prefix('/student')->group(function () {

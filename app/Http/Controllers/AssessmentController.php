@@ -19,10 +19,10 @@ class AssessmentController extends Controller
 {
     public function student(){
         $data = [
-            'title' => 'Assessment Student',
+            'title' => 'Assessment Siswa',
             'subTitle' => null,
             'page_id' => null,
-            'questions' => Question::all(), 
+            'questions' => Question::where('category', 'intelligence')->get(), 
             'myAssessment' => Assessment::where('user_id', '=', Auth::user()->id)->first(),
         ];
         return view('main.assessment-student',  $data);
@@ -70,10 +70,10 @@ class AssessmentController extends Controller
 
     public function general(){
         $data = [
-            'title' => 'Assessment Student',
+            'title' => 'Assessment Umum',
             'subTitle' => null,
             'page_id' => null,
-            'questions' => Question::all(), 
+            'questions' => Question::where('category', 'intelligence')->get(), 
         ];
         return view('main.assessment-general',  $data);
     }

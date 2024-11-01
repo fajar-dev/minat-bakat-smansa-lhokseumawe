@@ -60,6 +60,14 @@
                   <span class="menu-title">Tipe Kecerdasan</span>
                 </a>
               </div>
+              <div class="menu-item">
+                <a class="menu-link @if($subTitle == 'Tipe Kepribadian') active @endif" href="{{ route('master-data.personality-type') }}">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Tipe Kepribadian</span>
+                </a>
+              </div>
             </div>
           </div>
         @endif
