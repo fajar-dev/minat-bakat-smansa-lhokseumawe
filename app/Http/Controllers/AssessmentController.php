@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\Models\OrganizationRegistration;
+use App\Models\Riasec;
 use Illuminate\Support\Facades\Validator;
 
 class AssessmentController extends Controller
@@ -22,7 +23,10 @@ class AssessmentController extends Controller
             'title' => 'Assessment Siswa',
             'subTitle' => null,
             'page_id' => null,
-            'questions' => Question::where('category', 'intelligence')->get(), 
+            'questions' => Question::where('category', 'intelligence')->get(),
+            'riasecI' => Riasec::where('section', 1)->with(['result', 'question'])->get(), 
+            'riasecII' => Riasec::where('section', 2)->with(['result', 'question'])->get(), 
+            'riasecIII' => Riasec::where('section', 3)->with(['result', 'question'])->get(),
             'myAssessment' => Assessment::where('user_id', '=', Auth::user()->id)->first(),
         ];
         return view('main.assessment-student',  $data);
@@ -58,11 +62,11 @@ class AssessmentController extends Controller
             ]);
         }
 
-        $data = $this->calculate($assessment->id);
+        $data = $this->calculateMis($assessment->id);
 
         $assessmentUpdate = Assessment::find($assessment->id);
         $assessmentUpdate->results = json_encode($data['totals']);
-        $assessmentUpdate->result_id = $data['lowest']['id'];
+        $assessmentUpdate->intelligence_id = $data['lowest']['id'];
         $assessmentUpdate->save();
 
         return redirect()->route('assessment.result', $assessment->uuid);
@@ -73,15 +77,24 @@ class AssessmentController extends Controller
             'title' => 'Assessment Umum',
             'subTitle' => null,
             'page_id' => null,
-            'questions' => Question::where('category', 'intelligence')->get(), 
+            'questions' => Question::where('category', 'intelligence')->get(),
+            'riasecI' => Riasec::where('section', 1)->with(['result', 'question'])->get(), 
+            'riasecII' => Riasec::where('section', 2)->with(['result', 'question'])->get(), 
+            'riasecIII' => Riasec::where('section', 3)->with(['result', 'question'])->get(), 
         ];
+        // return $data['riasecI'];
         return view('main.assessment-general',  $data);
     }
 
-    private function calculate($assessmentId) {
-        $query = Assessment::where('id', $assessmentId)->with('answer.question')->first();
-    
-        $results = Result::all()->keyBy('id');
+    private function calculateMis($assessmentId) {
+        $query = Assessment::where('id', $assessmentId)
+        ->whereHas('answer.question', function($query) {
+            $query->where('category', 'intelligence');
+        })
+        ->with('answer.question')
+        ->first();
+
+        $results = Result::all()->keyBy('id')->where('category', 'intelligence');
     
         $scores = Score::all()->groupBy('result_id');
     

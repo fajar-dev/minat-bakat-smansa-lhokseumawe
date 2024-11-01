@@ -21,16 +21,22 @@ class Assessment extends Model
     protected $fillable = [
         'uuid',
         'user_id',
-        'result_id',
+        'intelligence_id',
+        'personality_id',
         'name',
         'birth_date',
         'hobby',
         'results'
     ];
 
-    public function result(): BelongsTo
+    public function intelligence(): BelongsTo
     {
-        return $this->belongsTo(Result::class);
+        return $this->belongsTo(Result::class, 'intelligence_id', 'id');
+    }
+
+    public function personality(): BelongsTo
+    {
+        return $this->belongsTo(Result::class, 'personality_id', 'id');
     }
 
     public function user(): BelongsTo

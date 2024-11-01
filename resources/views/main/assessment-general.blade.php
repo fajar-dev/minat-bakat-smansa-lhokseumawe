@@ -17,7 +17,7 @@
               </div>
               <div class="mb-10">
                 <h1 class="fw-bold">Tes Minat Bakat Siswa</h1>
-                <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span>
+                {{-- <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span> --}}
               </div>
               <div class="row">
                 <div class="mb-3">
@@ -47,27 +47,30 @@
                   </div>
                   @enderror
                 </div>
-              </div>
-              <div class="mt-10">
-                <p class="fw-bold mb-1">Petunjuk Pengisian:</p>
-                <ul class="text-gray-600">
-                    <li>Ada 9 butir pernyataan pada setiap kelompok pernyataan di bawah ini.</li>
-                    <li>Untuk setiap kelompok, buatlah ranking yang sesuai dengan dirimu.</li>
-                </ul>
-            
-                <p class="fw-bold mb-1">Cara Pemberian Ranking:</p>
-                <ul class="text-gray-600">
-                    <li>Berikan ranking <strong>1 hingga 9</strong> untuk setiap butir pernyataan.</li>
-                    <li>Berilah ranking <strong>1</strong> untuk pernyataan yang paling mewakili dirimu.</li>
-                    <li>Berilah ranking <strong>2, 3, 4</strong> dan seterusnya untuk pernyataan yang bukan utama.</li>
-                    <li>Berilah ranking <strong>9</strong> untuk pernyataan yang sangat tidak mewakili dirimu.</li>
-                </ul>
-              </div>            
+              </div>           
               <div class="table-responsive">
-                <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5 mt-10" id="kt_ecommerce_sales_table">
+                <table class="table align-middle table-row-dashed table-bordered gy-5 mt-10" id="kt_ecommerce_sales_table">
                   <tbody class="fw-semibold text-gray-600">
+                    <tr>
+                      <td colspan="2">
+                        <span class="text-dark fs-5">A. Tes Bakat Multiple Intelligences Score  (MIS)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <p class="fw-bold mb-1">Petunjuk Pengisian:</p>
+                        <span class="text-gray-600">
+                          Ada 9 butir pernyataan pada setiap kelompok pernyataan di bawah ini. Untuk 
+                          setiap kelompok buatlah ranking yang sesuai dengan dirimu. <br>
+                          Berilah ranking 1 hingga 9 untuk setiap butir pernyataan. Berilah ranking 1 untuk 
+                          pernyataan yang paling mewakili dirimu. Berilah rangking 2, 3, 4 dan selanjutnya 
+                          untuk butir pernyataan yang bukan utama. Berilah ranking 9 untuk pernyataan 
+                          yang sangat tidak mewakili dirimu.
+                        </span>
+                      </td>
+                    </tr>
                     @foreach ($questions as $item)
-                      <tr>
+                      <tr class="fs-6 ">
                         <td rowspan="2" class="text-center">
                           <span class="text-dark text-hover-primary">{{ $item->id }}</span>
                         </td>
@@ -75,7 +78,7 @@
                           <span class="text-dark fs-5">{{ $item->text }}</span>
                         </td>
                       </tr>
-                      <tr>
+                      <tr class="fs-6 ">
                         <td>
                           <div class="d-flex  align-items-center">
                             <span class="text-dark me-3">Setuju</span>
@@ -136,6 +139,179 @@
                   </tbody>
                 </table>
               </div>
+
+              <div class="table-responsive">
+                <table class="table align-middle table-row-dashed table-bordered gy-5 mt-10" id="kt_ecommerce_sales_table">
+                  <tbody class="fw-semibold text-gray-600">
+                    <tr>
+                      <td colspan="4">
+                        <span class="text-dark fs-5">B.Tes Minat SDS-Holland (RIASEC)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4">
+                        <p class="text-dark fs-5">Bagian I</p>
+                        <span class="text-gray-600">
+                          Berikan tanda X pada kotak di bawah huruf “S” jika Anda suka kegiatan tersebut,
+                          dan berilah tanda X pada kotak di bawah huruf “TS” jika Anda tidak suka atau
+                          biasa saja (bersikap netral) mengenai kegiatan tersebut
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="text-center">No.</th>
+                      <th class="text-center">Pertanyan </th>
+                      <th class="text-center">S</th>
+                      <th class="text-center">TS</th>
+                    </tr>
+                    @php
+                      $currentType = null;
+                    @endphp
+                    @foreach ($riasecI as $item)
+                        @if ($currentType !== $item->result->type)
+                            @php
+                                $currentType = $item->result->type;
+                            @endphp
+                            <tr>
+                                <td colspan="4" class="text-bold text-center fs-5 bg-light">{{ $currentType }}</td>
+                            </tr>
+                        @endif
+                        
+                        <tr class="fs-6">
+                            <td class="text-center">{{ $item->question->id }}</td>
+                            
+                            <td>
+                                <span class="text-dark fs-5">{{ $item->question->text }}</span>
+                            </td>
+                            
+                            <!-- 'S' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}1" value="1" checked>
+                                </div>
+                            </td>
+                            
+                            <!-- 'TS' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}0" value="0">
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                  </tbody>
+                  <tbody class="fw-semibold text-gray-600">
+                    <tr>
+                      <td colspan="4">
+                        <p class="text-dark fs-5">Bagian II</p>
+                        <span class="text-gray-600">
+                          Berikan tanda X pada kotak di bawah huruf “Y” (Ya) untuk kegiatan yang mampu 
+                          Anda lakukan dengan baik dan berilah tanda X pada kotak di bawah huruf “T” 
+                          (tidak) untuk kegiatan yang tidak pernah Anda lakukan atau tidak mampu Anda 
+                          laukakan dengan baik
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="text-center">No.</th>
+                      <th class="text-center">Pertanyan </th>
+                      <th class="text-center">Y</th>
+                      <th class="text-center">T</th>
+                    </tr>
+                    @php
+                      $currentType = null;
+                    @endphp
+                    @foreach ($riasecII as $item)
+                        @if ($currentType !== $item->result->type)
+                            @php
+                                $currentType = $item->result->type;
+                            @endphp
+                            <tr>
+                                <td colspan="4" class="text-bold text-center fs-5 bg-light">{{ $currentType }}</td>
+                            </tr>
+                        @endif
+                        
+                        <tr class="fs-6">
+                            <td class="text-center">{{ $item->question->id }}</td>
+                            
+                            <td>
+                                <span class="text-dark fs-5">{{ $item->question->text }}</span>
+                            </td>
+                            
+                            <!-- 'S' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}1" value="1" checked>
+                                </div>
+                            </td>
+                            
+                            <!-- 'TS' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}0" value="0">
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                  </tbody>
+                  <tbody class="fw-semibold text-gray-600">
+                    <tr>
+                      <td colspan="4">
+                        <p class="text-dark fs-5">Bagian III</p>
+                        <span class="text-gray-600">
+                          Daftar dibawah ini menggambarkan perasaan dan sikap Anda terhadap
+                          bermacam pekerjaan. Pada setiap pekerjaan berilah tanda X dibawah “Y” (Ya)
+                          , bila pekerjaan tersebut Anda sukai atau menarik bagi Anda. Berilah X dibawah
+                          “T” (Tidak), bila Anda merasa pekerjaan tersebut tidak Anda sukai atau tidak
+                          menarik bagi Anda.
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="text-center">No.</th>
+                      <th class="text-center">Pertanyan </th>
+                      <th class="text-center">Y</th>
+                      <th class="text-center">T</th>
+                    </tr>
+                    @php
+                      $currentType = null;
+                    @endphp
+                    @foreach ($riasecIII as $item)
+                        @if ($currentType !== $item->result->type)
+                            @php
+                                $currentType = $item->result->type;
+                            @endphp
+                            <tr>
+                                <td colspan="4" class="text-bold text-center fs-5 bg-light">{{ $currentType }}</td>
+                            </tr>
+                        @endif
+                        
+                        <tr class="fs-6">
+                            <td class="text-center">{{ $item->question->id }}</td>
+                            
+                            <td>
+                                <span class="text-dark fs-5">{{ $item->question->text }}</span>
+                            </td>
+                            
+                            <!-- 'S' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}1" value="1" checked>
+                                </div>
+                            </td>
+                            
+                            <!-- 'TS' Radio Button -->
+                            <td class="text-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="result[{{ $item->question->id }}]" id="question{{ $item->question->id }}0" value="0">
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+              
               <div class="form-check form-check-custom form-check-primary form-check-solid my-5 pt-3">
                 <input class="form-check-input" type="checkbox" required />
                 <label class="form-check-label" for="">

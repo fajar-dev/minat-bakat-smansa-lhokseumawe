@@ -14,72 +14,85 @@ class RiasecSeeder extends Seeder
     public function run(): void
     {
         $riasec = [
-            // Bagian I
-            ['section' => 1, 'result_id' => 10, 'question_id' => 38],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 39],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 40],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 41],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 42],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 43],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 44],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 45],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 46],
-            ['section' => 1, 'result_id' => 10, 'question_id' => 47],
-            
-            // Bagian I (kategori A)
-            ['section' => 1, 'result_id' => 11, 'question_id' => 48],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 49],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 50],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 51],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 52],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 53],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 54],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 55],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 56],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 57],
-            ['section' => 1, 'result_id' => 11, 'question_id' => 58],
-            
-            // Bagian I (kategori S)
-            ['section' => 1, 'result_id' => 12, 'question_id' => 59],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 60],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 61],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 62],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 63],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 64],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 65],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 66],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 67],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 68],
-            ['section' => 1, 'result_id' => 12, 'question_id' => 69],
-            
-            // Bagian I (kategori E)
-            ['section' => 1, 'result_id' => 13, 'question_id' => 70],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 71],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 72],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 73],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 74],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 75],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 76],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 77],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 78],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 79],
-            ['section' => 1, 'result_id' => 13, 'question_id' => 80],
-            
-            // Bagian I (kategori C)
-            ['section' => 1, 'result_id' => 14, 'question_id' => 81],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 82],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 83],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 84],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 85],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 86],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 87],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 88],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 89],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 90],
-            ['section' => 1, 'result_id' => 14, 'question_id' => 91],
-
-            // Bagian II
-            // R
+            // Bagian I - result_id 10-15
+            // R (result_id = 10)
+            ['section' => 1, 'result_id' => 10, 'question_id' => 28],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 29],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 30],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 31],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 32],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 33],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 34],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 35],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 36],
+            ['section' => 1, 'result_id' => 10, 'question_id' => 37],
+        
+            // I (result_id = 11)
+            ['section' => 1, 'result_id' => 11, 'question_id' => 38],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 39],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 40],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 41],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 42],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 43],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 44],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 45],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 46],
+            ['section' => 1, 'result_id' => 11, 'question_id' => 47],
+        
+            // A (result_id = 12)
+            ['section' => 1, 'result_id' => 12, 'question_id' => 48],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 49],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 50],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 51],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 52],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 53],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 54],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 55],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 56],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 57],
+            ['section' => 1, 'result_id' => 12, 'question_id' => 58],
+        
+            // S (result_id = 13)
+            ['section' => 1, 'result_id' => 13, 'question_id' => 59],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 60],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 61],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 62],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 63],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 64],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 65],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 66],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 67],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 68],
+            ['section' => 1, 'result_id' => 13, 'question_id' => 69],
+        
+            // E (result_id = 14)
+            ['section' => 1, 'result_id' => 14, 'question_id' => 70],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 71],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 72],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 73],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 74],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 75],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 76],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 77],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 78],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 79],
+            ['section' => 1, 'result_id' => 14, 'question_id' => 80],
+        
+            // C (result_id = 15)
+            ['section' => 1, 'result_id' => 15, 'question_id' => 81],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 82],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 83],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 84],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 85],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 86],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 87],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 88],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 89],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 90],
+            ['section' => 1, 'result_id' => 15, 'question_id' => 91],
+        
+            // Bagian II - result_id 10-15
+            // R (result_id = 10)
             ['section' => 2, 'result_id' => 10, 'question_id' => 92],
             ['section' => 2, 'result_id' => 10, 'question_id' => 93],
             ['section' => 2, 'result_id' => 10, 'question_id' => 94],
@@ -90,8 +103,8 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 10, 'question_id' => 99],
             ['section' => 2, 'result_id' => 10, 'question_id' => 100],
             ['section' => 2, 'result_id' => 10, 'question_id' => 101],
-            
-            // I
+        
+            // I (result_id = 11)
             ['section' => 2, 'result_id' => 11, 'question_id' => 102],
             ['section' => 2, 'result_id' => 11, 'question_id' => 103],
             ['section' => 2, 'result_id' => 11, 'question_id' => 104],
@@ -103,8 +116,8 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 11, 'question_id' => 110],
             ['section' => 2, 'result_id' => 11, 'question_id' => 111],
             ['section' => 2, 'result_id' => 11, 'question_id' => 112],
-            
-            // A
+        
+            // A (result_id = 12)
             ['section' => 2, 'result_id' => 12, 'question_id' => 113],
             ['section' => 2, 'result_id' => 12, 'question_id' => 114],
             ['section' => 2, 'result_id' => 12, 'question_id' => 115],
@@ -115,8 +128,8 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 12, 'question_id' => 120],
             ['section' => 2, 'result_id' => 12, 'question_id' => 121],
             ['section' => 2, 'result_id' => 12, 'question_id' => 122],
-            
-            // S
+        
+            // S (result_id = 13)
             ['section' => 2, 'result_id' => 13, 'question_id' => 123],
             ['section' => 2, 'result_id' => 13, 'question_id' => 124],
             ['section' => 2, 'result_id' => 13, 'question_id' => 125],
@@ -128,8 +141,8 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 13, 'question_id' => 131],
             ['section' => 2, 'result_id' => 13, 'question_id' => 132],
             ['section' => 2, 'result_id' => 13, 'question_id' => 133],
-            
-            // E
+        
+            // E (result_id = 14)
             ['section' => 2, 'result_id' => 14, 'question_id' => 134],
             ['section' => 2, 'result_id' => 14, 'question_id' => 135],
             ['section' => 2, 'result_id' => 14, 'question_id' => 136],
@@ -141,8 +154,8 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 14, 'question_id' => 142],
             ['section' => 2, 'result_id' => 14, 'question_id' => 143],
             ['section' => 2, 'result_id' => 14, 'question_id' => 144],
-            
-            // C
+        
+            // C (result_id = 15)
             ['section' => 2, 'result_id' => 15, 'question_id' => 145],
             ['section' => 2, 'result_id' => 15, 'question_id' => 146],
             ['section' => 2, 'result_id' => 15, 'question_id' => 147],
@@ -154,9 +167,9 @@ class RiasecSeeder extends Seeder
             ['section' => 2, 'result_id' => 15, 'question_id' => 153],
             ['section' => 2, 'result_id' => 15, 'question_id' => 154],
             ['section' => 2, 'result_id' => 15, 'question_id' => 155],
-
-              // Bagian III
-            // R
+        
+            // Bagian III - result_id 10-15
+            // R (result_id = 10)
             ['section' => 3, 'result_id' => 10, 'question_id' => 156],
             ['section' => 3, 'result_id' => 10, 'question_id' => 157],
             ['section' => 3, 'result_id' => 10, 'question_id' => 158],
@@ -170,9 +183,8 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 10, 'question_id' => 166],
             ['section' => 3, 'result_id' => 10, 'question_id' => 167],
             ['section' => 3, 'result_id' => 10, 'question_id' => 168],
-
-            
-            // I
+        
+            // I (result_id = 11)
             ['section' => 3, 'result_id' => 11, 'question_id' => 169],
             ['section' => 3, 'result_id' => 11, 'question_id' => 170],
             ['section' => 3, 'result_id' => 11, 'question_id' => 171],
@@ -187,9 +199,8 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 11, 'question_id' => 180],
             ['section' => 3, 'result_id' => 11, 'question_id' => 181],
             ['section' => 3, 'result_id' => 11, 'question_id' => 182],
-
-
-            // A
+        
+            // A (result_id = 12)
             ['section' => 3, 'result_id' => 12, 'question_id' => 183],
             ['section' => 3, 'result_id' => 12, 'question_id' => 184],
             ['section' => 3, 'result_id' => 12, 'question_id' => 185],
@@ -204,9 +215,8 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 12, 'question_id' => 194],
             ['section' => 3, 'result_id' => 12, 'question_id' => 195],
             ['section' => 3, 'result_id' => 12, 'question_id' => 196],
-
-
-            // S
+        
+            // S (result_id = 13)
             ['section' => 3, 'result_id' => 13, 'question_id' => 197],
             ['section' => 3, 'result_id' => 13, 'question_id' => 198],
             ['section' => 3, 'result_id' => 13, 'question_id' => 199],
@@ -221,7 +231,7 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 13, 'question_id' => 208],
             ['section' => 3, 'result_id' => 13, 'question_id' => 209],
 
-            // E
+            // E (result_id = 14)
             ['section' => 3, 'result_id' => 14, 'question_id' => 210],
             ['section' => 3, 'result_id' => 14, 'question_id' => 211],
             ['section' => 3, 'result_id' => 14, 'question_id' => 212],
@@ -236,8 +246,8 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 14, 'question_id' => 221],
             ['section' => 3, 'result_id' => 14, 'question_id' => 222],
             ['section' => 3, 'result_id' => 14, 'question_id' => 223],
-
-            // C
+        
+            // C (result_id = 15)
             ['section' => 3, 'result_id' => 15, 'question_id' => 224],
             ['section' => 3, 'result_id' => 15, 'question_id' => 225],
             ['section' => 3, 'result_id' => 15, 'question_id' => 226],
@@ -252,8 +262,8 @@ class RiasecSeeder extends Seeder
             ['section' => 3, 'result_id' => 15, 'question_id' => 235],
             ['section' => 3, 'result_id' => 15, 'question_id' => 236],
             ['section' => 3, 'result_id' => 15, 'question_id' => 237],
-
         ];
+        
 
         DB::table('riasecs')->insert($riasec);
     }

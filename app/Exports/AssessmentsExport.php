@@ -18,19 +18,19 @@ class AssessmentsExport implements FromCollection, WithHeadings
     public function collection()
     {
         if ($this->filter == 'siswa') {
-            $assessments = Assessment::whereNotNull('user_id')->with('result', 'user')->get();
+            $assessments = Assessment::whereNotNull('user_id')->with('intelligence', 'user')->get();
         } elseif ($this->filter == 'umum') {
-            $assessments = Assessment::whereNull('user_id')->with('result', 'user')->get();
+            $assessments = Assessment::whereNull('user_id')->with('intelligence', 'user')->get();
         } else {
-            $assessments = Assessment::with('result', 'user')->get();
+            $assessments = Assessment::with('intelligence', 'user')->get();
         }
 
         return $assessments->map(function($item) {
             return [
                 'Nama Peserta' => $item->name,
                 'Hobi/Aktivitas' => $item->hobby,
-                'Tipe Kecerdasan' => $item->result->type ?? '-',
-                'Rekomendasi Ekstrakulikuler' => $item->result->recomended->pluck('organization.name')->implode(', ') ?? '-',
+                'Tipe Kecerdasan' => $item->intelligence->type ?? '-',
+                'Rekomendasi Ekstrakulikuler' => $item->intelligence->recomended->pluck('organization.name')->implode(', ') ?? '-',
                 'Pilihan Ekstrakulikuler' => $item->user && $item->user->organizatiionRegistration ? $item->user->organizatiionRegistration->pluck('organization.name')->implode(', ') : '-',
                 'Kategori Peserta' => $item->user_id ? 'Siswa' : 'Umum',
             ];

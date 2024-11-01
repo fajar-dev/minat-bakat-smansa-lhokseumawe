@@ -46,6 +46,7 @@
             <th>Nama Peserta</th>
             <th>Hobi/Aktivitas</th>
             <th>Tipe Kecerdasan</th>
+            <th>Tipe Kepribadian</th>
             <th>Rekomendasi Ekstrakulikuler</th>
             <th>Pilihan Ekstrakulikuler</th>
             <th>Kategori Peserta</th>
@@ -65,10 +66,13 @@
                 <span>{{ $item->hobby }}</span>
               </td>
               <td class="pe-0">
-                <span>{{ $item->result->type }}</span>
+                <span>{{ $item->intelligence->type }}</span>
               </td>
               <td class="pe-0">
-                @foreach ($item->result->recomended as $organization)
+                {{-- <span>{{ $item->personality->type }}</span> --}}
+              </td>
+              <td class="pe-0">
+                @foreach ($item->intelligence->recomended as $organization)
                   <span>{{ $organization->organization->name}}</span>,
                 @endforeach
               </td>

@@ -13,7 +13,7 @@ class ScoreSeeder extends Seeder
      */
     public function run(): void
     {
-        $recomendeds = [
+        $score = [
             ['result_id' => 1, 'question_id' => 1],
             ['result_id' => 1, 'question_id' => 10],
             ['result_id' => 1, 'question_id' => 19],
@@ -43,6 +43,6 @@ class ScoreSeeder extends Seeder
             ['result_id' => 9, 'question_id' => 27],
         ];
 
-        DB::table('scores')->insert($recomendeds);
+        DB::table('scores')->insert($score);
     }
 }

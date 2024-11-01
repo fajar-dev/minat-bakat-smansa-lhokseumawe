@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('result_id')->nullable();
+            $table->unsignedBigInteger('intelligence_id')->nullable();
+            $table->unsignedBigInteger('personality_id')->nullable();
             $table->string('name');
             $table->date('birth_date');
             $table->string('hobby');
@@ -26,7 +27,11 @@ return new class extends Migration
             ->references('id')
             ->on('users');
 
-            $table->foreign('result_id')
+            $table->foreign('intelligence_id')
+            ->references('id')
+            ->on('results');
+
+            $table->foreign('personality_id')
             ->references('id')
             ->on('results');
         });

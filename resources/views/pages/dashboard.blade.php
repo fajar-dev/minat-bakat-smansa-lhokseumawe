@@ -43,18 +43,18 @@
           <p class="fw-bold mb-1 mt-5">Nama:</p>
           <span class="text-gray-600">{{ $myAssessment->name }}</span>
       
-          <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan:</p>
-          <span class="badge badge-primary">{{ $myAssessment->result->type }}</span>
+          <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Bakat):</p>
+          <span class="badge badge-primary">{{ $myAssessment->intelligence->type }}</span>
 
           <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-          <span class="text-gray-600">{{ $myAssessment->result->content }}</span>
+          <span class="text-gray-600">{{ $myAssessment->intelligence->content }}</span>
 
           <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
-          <span class="text-gray-600">{{ $myAssessment->result->development_area }}</span>
+          <span class="text-gray-600">{{ $myAssessment->intelligence->development_area }}</span>
 
           @if ($myAssessment->user_id)
             <p class="fw-bold mb-1 mt-5">Rekomendasi Ekstrakulikuler:</p>
-              @foreach ($myAssessment->result->recomended as $organization)
+              @foreach ($myAssessment->intelligence->recomended as $organization)
                 <span class="badge badge-light">{{ $organization->organization->name}}</span>
               @endforeach
           @endif

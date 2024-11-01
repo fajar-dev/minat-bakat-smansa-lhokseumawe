@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Riasec extends Model
 {
     use HasFactory;
-    protected $table = 'scores';
+    protected $table = 'riasecs';
 
     protected $fillable = [
         'section',

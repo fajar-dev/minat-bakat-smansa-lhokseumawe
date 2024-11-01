@@ -18,7 +18,6 @@
               </div>
               <div class="mb-10">
                 <h1 class="fw-bold">Hasil Tes</h1>
-                <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span>
               </div>
               <div>
                 <p class="fw-bold mb-1">Tanggal:</p>
@@ -27,23 +26,23 @@
                 <p class="fw-bold mb-1 mt-5">Nama:</p>
                 <span class="text-gray-600">{{ $result->name }}</span>
             
-                <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan:</p>
-                <span class="badge badge-primary">{{ $result->result->type }}</span>
+                <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Bakat) :</p>
+                <span class="badge badge-primary">{{ $result->intelligence->type }}</span>
 
                 <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-                <span class="text-gray-600">{{ $result->result->content }}</span>
+                <span class="text-gray-600">{{ $result->intelligence->content }}</span>
 
                 <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
-                <span class="text-gray-600">{{ $result->result->development_area }}</span>
+                <span class="text-gray-600">{{ $result->intelligence->development_area }}</span>
 
                 @if ($result->user_id)
                   <p class="fw-bold mb-1 mt-5">Rekomendasi Ekstrakulikuler:</p>
-                    @foreach ($result->result->recomended as $organization)
+                    @foreach ($result->intelligence->recomended as $organization)
                       <span class="badge badge-light">{{ $organization->organization->name}}</span>
                     @endforeach
                 @endif
               </div>
-              <div>
+              {{-- <div>
                 <p class="fw-bold mb-1 mt-5">Jawaban Saya:</p>
                 <div class="table-responsive">
                   <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
@@ -65,7 +64,7 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div> --}}
             </div>
           </div>
 
