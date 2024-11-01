@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Metronic - The World's #1 Selling Bootstrap Admin Template by KeenThemes</title>
+		<title>Minat-Bakat | SMAN 1 Lhokseumawe</title>
 		<meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">

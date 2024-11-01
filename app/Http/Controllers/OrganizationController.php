@@ -13,7 +13,7 @@ class OrganizationController extends Controller
     public function index(){
         $data = [
             'title' => 'Ekstrakulikuler',
-            'subTitle' => "Ekstrakulikuler Saya",
+            'subTitle' => null,
             'page_id' => null,
             'ekstrakulikuler' => Organization::all(),
             'organizationRegistration' => OrganizationRegistration::where('user_id', Auth::user()->id)->get()

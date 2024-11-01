@@ -4,7 +4,7 @@
 <div class="card card-flush">
   <div class="card-body table-responsive">
     <!--begin::Table-->
-    <table class="table align-middle table-row-dashed table-striped fs-6 gy-5" id="kt_ecommerce_sales_table">
+    <table class="table align-middle table-row-dashed table-striped fs-6 gy-5" id="table">
       <thead>
         <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
           <th class="min-w-50px ps-3">No</th>
@@ -25,7 +25,11 @@
       </tbody>
     </table>
   </div>
-
 </div>
-
+@endsection
+@section('script')
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script>
+  $("#table").DataTable();
+</script>
 @endsection

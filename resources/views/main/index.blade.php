@@ -26,6 +26,9 @@
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tentang" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tentang</a>
                     </div>
                     <div class="menu-item">
+                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tipe-kepribadian" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tipe Kepribadian</a>
+                    </div>
+                    <div class="menu-item">
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tipe-kecerdasan" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tipe Kecerdasan</a>
                     </div>
                     <div class="menu-item">
@@ -121,6 +124,79 @@
     </div>
 
     <div class="py-10 py-lg-20 mt-1">
+      <div class="container" id="tipe-kepribadian" data-kt-scroll-offset="{default: 100, lg: 150}">
+        <div class="text-center mb-17">
+          <h3 class="fs-2hx text-gray-900 mb-2">
+            Tipe Kepribadian
+          </h3>
+          <div class="fs-5 text-muted fw-bold">Temukan tipe kepribadian yang kamu miliki</div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 my-3 ">
+            <div class="alert alert-dismissible bg-light-primary d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/realistic.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Realistik</h4>
+                <span>Mudah mempelajari dan senang bekerja
+                  dengan alat-alat atau mesin dan juga suka dengan hewan</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 my-3">
+            <div class="alert alert-dismissible bg-light-info d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/investigatif.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Investigatif</h4>
+                <span>Senang belajar dan memecahkan soal-soal matematika
+                  dan ilmu pengetahuan alam (science)</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 my-3">
+            <div class="alert alert-dismissible bg-light-warning d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/artistik.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Artistik</h4>
+                <span>Senang melakukan aktivitas kreatif seperti melukis, drama,
+                  kerajinan, tari, musik maupun menulis kreatif</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 my-3">
+            <div class="alert alert-dismissible bg-light-danger d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/sosial.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Sosial</h4>
+                <span>Senang melakukan hal-hal yang membantu orang lain misalnya,
+                  mengajar, merawat, menyampaikan informasi</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 my-3">
+            <div class="alert alert-dismissible bg-light-success d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/giat.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Giat</h4>
+                <span>Senang memimpin dan meyakinkan/memengaruhi orang lain,
+                  juga menjual sesuatu barang maupun ide</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 my-3">
+            <div class="alert alert-dismissible bg-light-secondary d-flex flex-row p-5 mb-1 h-100">
+              <img alt="Logo" src="{{ asset('assets/img/icon/konvensional.png') }}" class="logo-default h-50px pe-5" />
+              <div class="d-flex flex-column pe-0 pe-sm-10">
+                <h4 class="fw-semibold">Konvensional</h4>
+                <span>Senang mengutak-atik angka, catatan arsip, atau
+                  peralatan, sistematis dan terukur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-10 py-lg-20 mt-1">
       <div class="container" id="tipe-kecerdasan" data-kt-scroll-offset="{default: 100, lg: 150}">
         <div class="text-center mb-17">
           <h3 class="fs-2hx text-gray-900 mb-2">
@@ -131,7 +207,7 @@
         <div class="row">
           <div class="col-md-4 my-3 ">
             <div class="alert alert-dismissible bg-light-primary d-flex flex-row p-5 mb-1 h-100">
-              <img alt="Logo" src="{{ asset('assets/img/icon/realistic.png') }}" class="logo-default h-50px pe-5" />
+              <img alt="Logo" src="{{ asset('assets/img/icon/kinestetik.png') }}" class="logo-default h-50px pe-5" />
               <div class="d-flex flex-column pe-0 pe-sm-10">
                 <h4 class="fw-semibold">Kinestetik</h4>
                 <span>Olah gerak, seni rupa, seni musik</span>
