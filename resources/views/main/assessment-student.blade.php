@@ -75,22 +75,7 @@
                     <input type="text" readonly name="hobby" class="form-control form-control-solid" value="{{ Auth::user()->hobby }}" placeholder="Hobi"/>
                   </div>
                 </div>
-              </div>
-              <div class="mt-10">
-                <p class="fw-bold mb-1">Petunjuk Pengisian:</p>
-                <ul class="text-gray-600">
-                    <li>Ada 9 butir pernyataan pada setiap kelompok pernyataan di bawah ini.</li>
-                    <li>Untuk setiap kelompok, buatlah ranking yang sesuai dengan dirimu.</li>
-                </ul>
-            
-                <p class="fw-bold mb-1">Cara Pemberian Ranking:</p>
-                <ul class="text-gray-600">
-                    <li>Berikan ranking <strong>1 hingga 9</strong> untuk setiap butir pernyataan.</li>
-                    <li>Berilah ranking <strong>1</strong> untuk pernyataan yang paling mewakili dirimu.</li>
-                    <li>Berilah ranking <strong>2, 3, 4</strong> dan seterusnya untuk pernyataan yang bukan utama.</li>
-                    <li>Berilah ranking <strong>9</strong> untuk pernyataan yang sangat tidak mewakili dirimu.</li>
-                </ul>
-              </div>            
+              </div>           
               <div class="table-responsive">
                 <table class="table align-middle table-row-dashed table-bordered gy-5 mt-10" id="kt_ecommerce_sales_table">
                   <tbody class="fw-semibold text-gray-600">
