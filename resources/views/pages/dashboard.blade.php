@@ -58,7 +58,7 @@
               </div>
               <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
                 <span class="d-flex align-items-center text-gray-400 me-5 mb-2">
-                  Have an a nice day
+                  Semoga harimu menyenangkan
                 </span>
               </div>
             </div>
