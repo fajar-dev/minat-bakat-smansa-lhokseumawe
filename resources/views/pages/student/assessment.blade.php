@@ -7,7 +7,6 @@
       <div class="me-7 mb-4">
         <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
           <img src="{{$student->photo_path ? Storage::url($student->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.$student->name}}" alt="image" />
-          <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
         </div>
       </div>
       <div class="flex-grow-1">
@@ -68,26 +67,29 @@
         <p class="fw-bold mb-1">Tanggal:</p>
         <span class="text-gray-600">{{ $assessment->created_at }}</span>
 
-        <p class="fw-bold mb-1 mt-5">Nama:</p>
-        <span class="text-gray-600">{{ $assessment->name }}</span>
-    
-        <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan:</p>
-        <span class="badge badge-primary">{{ $assessment->result->type }}</span>
+        <p class="fw-bold mb-1 mt-5">Tipe Kepribadian (Minat):</p>
+        <span class="badge badge-primary">{{ $assessment->personality->type }}</span>
 
         <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-        <span class="text-gray-600">{{ $assessment->result->content }}</span>
+        <span class="text-gray-600">{!! $assessment->personality->content !!}</span>
+    
+        <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (bakat):</p>
+        <span class="badge badge-primary">{{ $assessment->intelligence->type }}</span>
+
+        <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
+        <span class="text-gray-600">{{ $assessment->intelligence->content }}</span>
 
         <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
-        <span class="text-gray-600">{{ $assessment->result->development_area }}</span>
+        <span class="text-gray-600">{{ $assessment->intelligence->development_area }}</span>
 
         @if ($assessment->user_id)
           <p class="fw-bold mb-1 mt-5">Rekomendasi Ekstrakulikuler:</p>
-            @foreach ($assessment->result->recomended as $organization)
+            @foreach ($assessment->intelligence->recomended as $organization)
               <span class="badge badge-light">{{ $organization->organization->name}}</span>
             @endforeach
         @endif
       </div>
-      <div>
+      {{-- <div>
         <p class="fw-bold mb-1 mt-5">Jawaban Saya:</p>
         <div class="table-responsive">
           <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
@@ -109,7 +111,7 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>

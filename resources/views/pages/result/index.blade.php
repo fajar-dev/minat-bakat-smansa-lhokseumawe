@@ -45,8 +45,8 @@
             <th>NO</th>
             <th>Nama Peserta</th>
             <th>Hobi/Aktivitas</th>
-            <th>Tipe Kecerdasan</th>
-            <th>Tipe Kepribadian</th>
+            <th>Tipe Kepribadian (Minat)</th>
+            <th>Tipe Kecerdasan (Bakat)</th>
             <th>Rekomendasi Ekstrakulikuler</th>
             <th>Pilihan Ekstrakulikuler</th>
             <th>Kategori Peserta</th>
@@ -66,10 +66,10 @@
                 <span>{{ $item->hobby }}</span>
               </td>
               <td class="pe-0">
-                <span>{{ $item->intelligence->type }}</span>
+                <span>{{ $item->personality->type }}</span>
               </td>
               <td class="pe-0">
-                {{-- <span>{{ $item->personality->type }}</span> --}}
+                <span>{{ $item->intelligence->type }}</span>
               </td>
               <td class="pe-0">
                 @foreach ($item->intelligence->recomended as $organization)
@@ -115,7 +115,7 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h3 class="modal-title">Detail Jawaban</h3>
+              <h3 class="modal-title">Detail Score</h3>
 
               <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
                   <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
@@ -137,17 +137,43 @@
                 <tbody class="fw-semibold text-gray-600">
                   <thead>
                     <tr class="fw-bold fs-6 text-gray-800">
-                      <th>Pertanyaan</th>
-                      <th class="text-center">Rangking</th>
+                      <th>Tipe Kepribadian</th>
+                      <th class="text-center">Score</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($item->answer as $data)
-                    <tr>
-                      <td class="py-2 my-0">{{ $data->question->text }}</td>
-                      <td class="py-2 my-0 text-center">{{ $data->value }}</td>
+                  @php
+                      $results = json_decode($item->riasec_results, true);
+                  @endphp
+                  @foreach ($results as $key => $value)
+                      <tr>
+                          <td class="py-2 my-0">{{ $key }}</td>
+                          <td class="py-2 my-0 text-center">{{ $value }}</td>
+                      </tr>
+                  @endforeach
+                  </tbody>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
+                <tbody class="fw-semibold text-gray-600">
+                  <thead>
+                    <tr class="fw-bold fs-6 text-gray-800">
+                      <th>Tipe Kecerdasan</th>
+                      <th class="text-center">Score</th>
                     </tr>
-                    @endforeach
+                  </thead>
+                  <tbody>
+                  @php
+                      $results = json_decode($item->mis_results, true);
+                  @endphp
+                  @foreach ($results as $key => $value)
+                      <tr>
+                          <td class="py-2 my-0">{{ $key }}</td>
+                          <td class="py-2 my-0 text-center">{{ $value }}</td>
+                      </tr>
+                  @endforeach
                   </tbody>
                 </tbody>
               </table>

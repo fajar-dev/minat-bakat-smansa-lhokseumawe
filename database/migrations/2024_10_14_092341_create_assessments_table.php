@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->date('birth_date');
             $table->string('hobby');
-            $table->json('results')->nullable();
+            $table->json('mis_results')->nullable();
+            $table->json('riasec_results')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

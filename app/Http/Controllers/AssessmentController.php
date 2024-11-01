@@ -62,11 +62,14 @@ class AssessmentController extends Controller
             ]);
         }
 
-        $data = $this->calculateMis($assessment->id);
-
+        $dataMis = $this->calculateMis($assessment->id);
+        $dataRiasec = $this->calculateRiases($assessment->id);
+        
         $assessmentUpdate = Assessment::find($assessment->id);
-        $assessmentUpdate->results = json_encode($data['totals']);
-        $assessmentUpdate->intelligence_id = $data['lowest']['id'];
+        $assessmentUpdate->mis_results = json_encode($dataMis['totals']);
+        $assessmentUpdate->riasec_results = json_encode($dataRiasec['totals']);
+        $assessmentUpdate->intelligence_id = $dataMis['lowest']['id'];
+        $assessmentUpdate->personality_id = $dataRiasec['highest']['id'];
         $assessmentUpdate->save();
 
         return redirect()->route('assessment.result', $assessment->uuid);
@@ -133,6 +136,53 @@ class AssessmentController extends Controller
     
         return $resultData;
     }
+
+    private function calculateRiases($assessmentId) {
+        $query = Assessment::where('id', $assessmentId)
+            ->whereHas('answer.question', function($query) {
+                $query->where('category', 'personality');
+            })
+            ->with('answer.question')
+            ->first();
+    
+        $results = Result::all()->keyBy('id')->where('category', 'personality');
+        $scores = Riasec::all()->groupBy('result_id');
+        $totals = [];
+    
+        foreach ($results as $result) {
+            $totals[$result->type] = 0;
+        }
+    
+        foreach ($query->answer as $answer) {
+            foreach ($scores as $result_id => $questions) {
+                // Cek apakah pertanyaan ada di dalam daftar Score
+                if ($questions->pluck('question_id')->contains($answer->question_id)) {
+                    $totals[$results[$result_id]->type] += $answer->value;
+                }
+            }
+        }
+    
+        $highestType = null;
+        $highestValue = PHP_INT_MIN;
+        foreach ($totals as $type => $total) {
+            if ($total > $highestValue) { 
+                $highestValue = $total;
+                $highestType = $type;
+            }
+        }
+    
+        $resultData = [
+            'totals' => $totals,
+            'highest' => [
+                'id' => $results->firstWhere('type', $highestType)->id ?? null,
+                'type' => $highestType,
+                'value' => $highestValue,
+            ],
+        ];
+    
+        return $resultData;
+    }
+    
 
     public function result($id){
         $data = [

@@ -25,6 +25,12 @@
 
                 <p class="fw-bold mb-1 mt-5">Nama:</p>
                 <span class="text-gray-600">{{ $result->name }}</span>
+
+                <p class="fw-bold mb-1 mt-5">Tipe Kepribadian (Minat) :</p>
+                <span class="badge badge-primary">{{ $result->personality->type }}</span>
+
+                <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
+                <span class="text-gray-600">{!! $result->personality->content !!}</span>
             
                 <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Bakat) :</p>
                 <span class="badge badge-primary">{{ $result->intelligence->type }}</span>

@@ -26,7 +26,8 @@ class Assessment extends Model
         'name',
         'birth_date',
         'hobby',
-        'results'
+        'mis_results',
+        'riasec_results'
     ];
 
     public function intelligence(): BelongsTo

@@ -18,17 +18,18 @@ class AssessmentsExport implements FromCollection, WithHeadings
     public function collection()
     {
         if ($this->filter == 'siswa') {
-            $assessments = Assessment::whereNotNull('user_id')->with('intelligence', 'user')->get();
+            $assessments = Assessment::whereNotNull('user_id')->with('intelligence', 'personality', 'user')->get();
         } elseif ($this->filter == 'umum') {
-            $assessments = Assessment::whereNull('user_id')->with('intelligence', 'user')->get();
+            $assessments = Assessment::whereNull('user_id')->with('intelligence', 'personality', 'user')->get();
         } else {
-            $assessments = Assessment::with('intelligence', 'user')->get();
+            $assessments = Assessment::with('intelligence', 'personality', 'user')->get();
         }
 
         return $assessments->map(function($item) {
             return [
                 'Nama Peserta' => $item->name,
                 'Hobi/Aktivitas' => $item->hobby,
+                'Tipe Kepribadian' => $item->personality->type ?? '-',
                 'Tipe Kecerdasan' => $item->intelligence->type ?? '-',
                 'Rekomendasi Ekstrakulikuler' => $item->intelligence->recomended->pluck('organization.name')->implode(', ') ?? '-',
                 'Pilihan Ekstrakulikuler' => $item->user && $item->user->organizatiionRegistration ? $item->user->organizatiionRegistration->pluck('organization.name')->implode(', ') : '-',
@@ -42,7 +43,8 @@ class AssessmentsExport implements FromCollection, WithHeadings
         return [
             'Nama Peserta',
             'Hobi/Aktivitas',
-            'Tipe Kecerdasan',
+            'Tipe Kepribadian (Minat)',
+            'Tipe Kecerdasan (Bakat)',
             'Rekomendasi Ekstrakulikuler',
             'Pilihan Ekstrakulikuler',
             'Kategori Peserta',

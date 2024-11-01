@@ -1,27 +1,74 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="card bgi-no-repeat bgi-position-x-end bgi-size-cover"  style="background-size: auto 100%; background-image: url('https://preview.keenthemes.com/metronic8/demo4/assets/media/misc/taieri.svg')">
-  <div class="card-body pt-9 pb-0">
-    <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
-      <div class="flex-grow-1">
-        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-          <div class="d-flex flex-column">
-            <div class="d-flex align-items-center mb-2">
-              <a href="#" class="text-gray-900 text-hover-primary fs-1 fw-bolder me-1">Hi!, {{ Auth::user()->name}}
-              </a>
+@if (Auth::user()->role == 'user')
+  <div class="card mb-5 mb-xxl-8 bgi-no-repeat bgi-position-x-end bgi-size-cover" style="background-size: auto 100%; background-image: url('https://preview.keenthemes.com/metronic8/demo4/assets/media/misc/taieri.svg')">
+    <div class="card-body pt-6 pb-3">
+      <div class="d-flex flex-wrap flex-sm-nowrap">
+        <div class="me-7 mb-4">
+          <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+            <img src="{{Auth::user()->photo_path ? Storage::url(Auth::user()->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.Auth::user()->name}}" alt="image" />
+            <div class="position-absolute mb-0 pb-0 translate-middle bottom-0 start-100 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+          </div>
+        </div>
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+            <div class="d-flex flex-column">
+              <div class="d-flex align-items-center mb-2">
+                <div class="text-gray-900 fs-2 fw-bold me-1">{{Auth::user()->name}}</div>
+              </div>
+              <div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+                <span class="d-flex align-items-center text-gray-500 mb-2">
+                {{Auth::user()->student_identity_number}}</span>
+              </div>
             </div>
-            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-              <span class="d-flex align-items-center text-gray-400 me-5 mb-2">
-                Have an a nice day
-              </span>
+          </div>
+          <div class="d-flex flex-wrap flex-stack">
+            <div class="d-flex flex-column flex-grow-1 pe-8">
+              <div class="d-flex flex-wrap">
+                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="fs-2 fw-bold">{{Auth::user()->class}}</div>
+                  </div>
+                  <div class="fw-semibold fs-6 text-gray-500">Kelas</div>
+                </div>
+                <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                  <div class="d-flex align-items-center">
+                    <div class="fs-2 fw-bold">{{Auth::user()->major}}</div>
+                  </div>
+                  <div class="fw-semibold fs-6 text-gray-500">Jurusan</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+@else
+  <div class="card bgi-no-repeat bgi-position-x-end bgi-size-cover"  style="background-size: auto 100%; background-image: url('https://preview.keenthemes.com/metronic8/demo4/assets/media/misc/taieri.svg')">
+    <div class="card-body pt-9 pb-0">
+      <div class="d-flex flex-wrap flex-sm-nowrap mb-3">
+        <div class="flex-grow-1">
+          <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+            <div class="d-flex flex-column">
+              <div class="d-flex align-items-center mb-2">
+                <a href="#" class="text-gray-900 text-hover-primary fs-1 fw-bolder me-1">Hi!, {{ Auth::user()->name}}
+                </a>
+              </div>
+              <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+                <span class="d-flex align-items-center text-gray-400 me-5 mb-2">
+                  Have an a nice day
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endif
+
 
 @if (Auth::user()->role == 'user')
     @if ($myAssessment)
@@ -42,6 +89,12 @@
 
           <p class="fw-bold mb-1 mt-5">Nama:</p>
           <span class="text-gray-600">{{ $myAssessment->name }}</span>
+
+          <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Minat):</p>
+          <span class="badge badge-primary">{{ $myAssessment->personality->type }}</span>
+
+          <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
+          <span class="text-gray-600">{!! $myAssessment->personality->content !!}</span>
       
           <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Bakat):</p>
           <span class="badge badge-primary">{{ $myAssessment->intelligence->type }}</span>
@@ -59,7 +112,7 @@
               @endforeach
           @endif
         </div>
-        <div>
+        {{-- <div>
           <p class="fw-bold mb-1 mt-5">Jawaban Saya:</p>
           <div class="table-responsive">
             <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="kt_ecommerce_sales_table">
@@ -81,7 +134,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     @else
