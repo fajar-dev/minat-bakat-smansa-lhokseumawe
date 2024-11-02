@@ -57,9 +57,9 @@
                 </a>
               </div>
               <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                <span class="d-flex align-items-center text-gray-400 me-5 mb-2">
+                {{-- <span class="d-flex align-items-center text-gray-400 me-5 mb-2">
                   Semoga harimu menyenangkan
-                </span>
+                </span> --}}
               </div>
             </div>
           </div>
@@ -77,7 +77,6 @@
         <div class="mb-10 d-flex justify-content-between">
           <div>
             <h1 class="fw-bold">Hasil Tes</h1>
-            <span class="text-gray-700">Multiple Intelligences Score  (MIS)</span>
           </div>
           <div>
             <a href="{{ route('assessment.student') }}" class="btn btn-danger">Ulangi Tes</a>
@@ -86,9 +85,6 @@
         <div>
           <p class="fw-bold mb-1">Tanggal:</p>
           <span class="text-gray-600">{{ $myAssessment->created_at }}</span>
-
-          <p class="fw-bold mb-1 mt-5">Nama:</p>
-          <span class="text-gray-600">{{ $myAssessment->name }}</span>
 
           <p class="fw-bold mb-1 mt-5">Tipe Kecerdasan (Minat):</p>
           <span class="badge badge-primary">{{ $myAssessment->personality->type }}</span>

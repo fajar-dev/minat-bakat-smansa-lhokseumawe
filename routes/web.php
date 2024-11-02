@@ -75,6 +75,7 @@ Route::prefix('/student')->group(function () {
     Route::get('/{id}/detail', [StudentController::class, 'detail'])->name('student.detail');
     Route::get('/{id}/assessment', [StudentController::class, 'assessment'])->name('student.assessment');
     Route::get('/{id}/organization', [StudentController::class, 'organization'])->name('student.organization');
+    Route::get('/{id}/achievement', [StudentController::class, 'achievement'])->name('student.achievement');
 })->middleware(['auth', 'role:admin']);
 
 Route::prefix('/result')->group(function () {

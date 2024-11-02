@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\User;
 use App\Models\Assessment;
 use App\Models\OrganizationRegistration;
@@ -49,5 +50,16 @@ class StudentController extends Controller
             'organizationRegistration' => OrganizationRegistration::where('user_id', $id)->get()
         ];
         return view('pages.student.organization',  $data);
+    }
+
+    public function achievement($id){
+        $data = [
+            'title' => 'Siswa',
+            'subTitle' => 'Prestasi',
+            'page_id' => null,
+            'student' => User::where('id', $id)->firstOrFail(),
+            'achievement' => Achievement::where('user_id', $id)->get()
+        ];
+        return view('pages.student.achievement',  $data);
     }
 }

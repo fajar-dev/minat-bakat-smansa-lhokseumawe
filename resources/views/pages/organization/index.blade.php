@@ -71,7 +71,6 @@
             <th class="min-w-20px">NO</th>
             <th class="min-w-50px">Ekstrakulikuler</th>
             <th class="min-w-100px">Alasan</th>
-            <th class="min-w-100px">Tanggal</th>
             <th class="text-end">Aksi</th>
           </tr>
         </thead>
@@ -86,9 +85,6 @@
             </td>
             <td>
               <span>{{ $item->reason }}</span>
-            </td>
-            <td>
-              <span>{{ $item->created_at }}</span>
             </td>
             <td class="text-end">
               <button id="{{ route('organization.destroy', $item->id) }}" class="btn btn-danger btn-sm btn-del">Hapus</button>

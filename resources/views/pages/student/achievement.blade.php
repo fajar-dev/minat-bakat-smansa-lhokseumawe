@@ -49,10 +49,10 @@
         <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ route('student.assessment', $student->id) }}">Penilaian</a>
       </li>
       <li class="nav-item mt-2">
-        <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="{{ route('student.organization', $student->id) }}">Ekstrakulikuler</a>
+        <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ route('student.organization', $student->id) }}">Ekstrakulikuler</a>
       </li>
       <li class="nav-item mt-2">
-        <a class="nav-link text-active-primary ms-0 me-10 py-5" href="{{ route('student.achievement', $student->id) }}">Prestasi</a>
+        <a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="{{ route('student.achievement', $student->id) }}">Prestasi</a>
       </li>
     </ul>
   </div>
@@ -61,38 +61,48 @@
 <div class="card mb-5 mb-xl-10">
   <div class="card-header border-0 cursor-pointer">
     <div class="card-title m-0">
-      <h3 class="fw-bold m-0">Ekstrakulikuler Siswa</h3>
+      <h3 class="fw-bold m-0">Prestasi Siswa</h3>
     </div>
   </div>
   <div>
     <div class="border-top p-9">
-      <table id="table" class="table table-row-dashed table-striped fs-6 gy-5">
+      <table class="table align-middle table-row-dashed table-striped fs-6 gy-5" id="table">
         <thead>
-          <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-            <th class="min-w-20px">NO</th>
-            <th class="min-w-50px">Ekstrakulikuler</th>
-            <th class="min-w-100px">Alasan</th>
+          <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+            <th class="min-w-50px ps-3">No</th>
+            <th class="min-w-100px">Nama Kegiatan</th>
+            <th class="min-w-100px">Tanggal Kegiatan</th>
+            <th class="min-w-100px">Tipe Prestasi</th>
+            <th class="min-w-100px">Nama Prestasi</th>
+            <th class="min-w-100px">Bukti</th>
             <th class="text-end">Aksi</th>
           </tr>
         </thead>
         <tbody class="fw-semibold text-gray-800">
-          @foreach ($organizationRegistration  as $index => $item)     
-          <tr>
-            <td>
-              <span class="text-gray-800 fw-bold ps-3">{{ $index + 1 }}</span>
-            </td>
-            <td>
-              <span>{{ $item->organization->name }}</span>
-            </td>
-            <td>
-              <span>{{ $item->reason }}</span>
-            </td>
-            <td class="pe-0 text-end">
-              <div>
-                <button id="{{ route('organization.destroy', $item->id) }}" class="btn btn-danger btn-del btn-sm">Hapus</button>
-              </div>
-            </td>
-          </tr>
+            @foreach ($achievement as $index => $item)     
+            <tr>
+              <td>
+                <span class="text-gray-800 text-hover-primary  ps-3">{{ $index + 1 }}</span>
+              </td>
+              <td class="pe-0">
+                <span>{{ $item->activity_name }}</span>
+              </td>
+              <td class="pe-0">
+                <span>{{ $item->date }}</span>
+              </td>
+              <td class="pe-0">
+                <span>{{ $item->type }}</span>
+              </td>
+              <td class="pe-0">
+                <span>{{ $item->achievement_name }}</span>
+              </td>
+              <td class="pe-0">
+                <a href="{{ Storage::url($item->file_path) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+              </td>
+              <td class="text-end">
+                <button id="{{ route('achievement.destroy', $item->id) }}" class="btn btn-danger btn-sm btn-del">Hapus</button>
+              </td>
+            </tr>
           @endforeach
         </tbody>
       </table>
