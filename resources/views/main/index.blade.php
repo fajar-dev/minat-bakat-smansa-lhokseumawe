@@ -32,7 +32,7 @@
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#tipe-kecerdasan" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tipe Kecerdasan</a>
                     </div>
                     <div class="menu-item">
-                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#ekstrakulikuler" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Ekstrakulikuler</a>
+                      <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#prestasi" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Prestasi</a>
                     </div>
                     <div class="menu-item">
                       <a class="menu-link nav-link py-3 px-4 px-xxl-6" href="#team" data-kt-scroll-toggle="true" data-kt-drawer-dismiss="true">Tim Pengabdian</a>
@@ -291,61 +291,60 @@
     </div>
 
     <div class="py-10 py-lg-20 mt-1">
-      <div class="container" id="ekstrakulikuler" data-kt-scroll-offset="{default: 100, lg: 150}">
+      <div class="container" id="prestasi" data-kt-scroll-offset="{default: 100, lg: 150}">
         <div class="text-center mb-17">
           <h3 class="fs-2hx text-gray-900 mb-2">
-            Ekstrakulikuler
+            Prestasi
           </h3>
-          <div class="fs-5 text-muted fw-bold">Ekstrakulikuler tersedia</div>
+          <div class="fs-5 text-muted fw-bold">Prestasi Siswa</div>
         </div>
         <div class="row">
           <div class="col-12">
             <div class="card card-flush">
               <div class="card-body table-responsive">
-                <table class="table align-middle table-row-dashed table-striped fs-6 gy-5">
+                <table class="table align-middle table-row-dashed table-striped fs-6 gy-5" id="table">
                   <thead>
-                    <tr class="text-start text-gray-900 fw-bold fs-7 text-uppercase gs-0">
-                      <th class="min-w-50px ps-3">No</th>
-                      <th class="min-w-150px">Kegiatan</th>
-                      <th class="min-w-200px">Pembina</th>
+                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                      <th class="min-w-200px">Siswa</th>
+                      <th class="min-w-100px">Nama Kegiatan</th>
+                      <th class="min-w-100px">Tanggal Kegiatan</th>
+                      <th class="min-w-100px">Tipe Prestasi</th>
+                      <th class="min-w-100px">Nama Prestasi</th>
                     </tr>
                   </thead>
-                  <tbody class="fw-semibold text-gray-600">
-                    <?php $no = 1; ?>
-                    <?php foreach ($organization as $org_category): ?>
+                  <tbody class="fw-semibold text-gray-800">
+                      @foreach ($achievement as $index => $item)     
                       <tr>
-                        <td colspan="3">
-                          <span class="text-gray-900 ps-3 fw-bold"><?= chr(64 + $no++) ?>.</span>
-                          <span class="text-gray-900 ps-3 fw-bold"> <?= $org_category->name ?></span>
+                        <td class="d-flex align-items-center min-w-150px">
+                          <div class="symbol-group symbol-hover me-3">
+                            <div class="symbol symbol-45px symbol-circle" data-bs-toggle="tooltip" title="{{ $item->user->name }}">
+                              <img src="{{ $item->user->photo_path ? Storage::url($item->user->photo_path) : 'https://ui-avatars.com/api/?background=F8F5FF&color=7239EA&bold=true&name='.$item->user->name}}" alt="">
+                            </div>
+                          </div>
+                          <div class="d-flex flex-column">
+                            <span class="text-gray-800 fw-bold mb-1">{{ $item->user->name }}</span>
+                            <span class="text-gray-600 fs-7">{{ $item->user->student_identity_number }}</span>
+                            <span class="text-gray-600 fs-7">{{ $item->user->class }} - {{ $item->user->major }}</span>
+            
+                          </div>
+                        </td>
+                        <td class="pe-0">
+                          <span>{{ $item->activity_name }}</span>
+                        </td>
+                        <td class="pe-0">
+                          <span>{{ $item->date }}</span>
+                        </td>
+                        <td class="pe-0">
+                          <span>{{ $item->type }}</span>
+                        </td>
+                        <td class="pe-0">
+                          <span>{{ $item->achievement_name }}</span>
                         </td>
                       </tr>
-                      <?php foreach ($org_category->organization as $org): ?>
-                        <tr>
-                          <td>
-                            <span class="ps-5 text-gray-700"><?= $org->id ?></span>
-                          </td>
-                          <td class="pe-0">
-                            <span class="fw-bold text-gray-700"><?= $org->name ?></span>
-                          </td>
-                          <td class="pe-0">
-                            <span class="fw-bold text-gray-700">
-                              <?php 
-                                $coaches = json_decode($org->coach, true);
-                                foreach ($coaches as $coach) {
-                                  echo $coach['name'] . ' (' . $coach['position'] . ')<br>';
-                                }
-                              ?>
-                            </span>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                    <?php endforeach; ?>
+                    @endforeach
                   </tbody>
                 </table>
-                
-                <!--end::Table-->
               </div>
-            
             </div>
           </div>
         </div>
@@ -468,4 +467,11 @@
             </div>
     </div>
 </div>
+
+@section('script')
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script>
+  $("#table").DataTable();
+</script>
+@endsection
 @endsection

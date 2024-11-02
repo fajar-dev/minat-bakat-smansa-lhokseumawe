@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use Illuminate\Http\Request;
-use App\Models\OrganizationCategory;
 
 class MainController extends Controller
 {
@@ -12,7 +12,7 @@ class MainController extends Controller
             'title' => 'Beranda',
             'subTitle' => null,
             'page_id' => null,
-            'organization' => OrganizationCategory::with('organization')->get()
+            'achievement' => Achievement::all()
         ];
         return view('main.index',  $data);
     }
