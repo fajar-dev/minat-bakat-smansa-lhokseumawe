@@ -153,6 +153,84 @@
   </div>
 </div>
 
+@foreach ($achievement as $item)
+<div class="modal fade" tabindex="-1" id="edit{{$item->id}}">
+  <div class="modal-dialog">
+    <form method="POST" action="{{ route('achievement.update', $item->id) }}" class="modal-content" id="edit{{$item->id}}" enctype="multipart/form-data">
+      @csrf
+        <div class="modal-header">
+            <h3 class="modal-title">Edit Prestasi</h3>
+            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+            </div>
+        </div>
+        <div class="modal-body">
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="required form-label">Nama Kegiatan</label>
+            <input type="text" name="activity_name" class="form-control form-control-solid @error('activity_name') is-invalid @enderror"  value="{{ old('activity_name') ?? $item->activity_name }}" placeholder="Nama Kegiatan" required/>
+            @error('activity_name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="required form-label">Tanggal Kegiatan</label>
+            <input type="date" name="date" class="form-control form-control-solid @error('date') is-invalid @enderror"  value="{{ old('date') ?? $item->date }}" placeholder="Nama" required/>
+            @error('date')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="required form-label">Tipe prestasi</label>
+            <select name="type" class="form-select form-select-solid @error('type') is-invalid @enderror" data-control="select2" data-placeholder="Pilih Tipe Prestasi">
+                <option value="Internasional" {{ (old('type') ?? $item->type) == 'Internasional' ? 'selected' : '' }}>Internasional</option>
+                <option value="Nasional" {{ (old('type') ?? $item->type) == 'Nasional' ? 'selected' : '' }}>Nasional</option>
+                <option value="Kabupaten/Kota" {{ (old('type') ?? $item->type) == 'Kabupaten/Kota' ? 'selected' : '' }}>Kabupaten/Kota</option>
+                <option value="Kecamatan" {{ (old('type') ?? $item->type) == 'Kecamatan' ? 'selected' : '' }}>Kecamatan</option>
+                <option value="Kelurahan/Desa/Gampong" {{ (old('type') ?? $item->type) == 'Kelurahan/Desa/Gampong' ? 'selected' : '' }}>Kelurahan/Desa/Gampong</option>
+            </select>
+            @error('type')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="required form-label">Nama Penghargaan/Prestasi</label>
+            <input type="text" name="achievement_name" class="form-control form-control-solid @error('achievement_name') is-invalid @enderror"  value="{{ old('achievement_name') ?? $item->achievement_name }}" placeholder="Nama Penghargaan/Prestasi" required/>
+            @error('achievement_name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="form-label">Bukti</label>
+            <input type="file" name="file_path" class="form-control form-control-solid @error('file_path') is-invalid @enderror"  value="{{ old('file_path') }}"/>
+            <div class="form-text">Allowed file types: png, jpg, jpeg. Max: 2mb</div>
+            @error('file_path')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-primary" id="submit{{$item->id}}">
+              <span class="indicator-label">Simpan</span>
+              <span class="indicator-progress" style="display: none;">Loading... 
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+        </div>
+    </form>
+  </div>
+</div>
+@endforeach
+
 @endsection
 @section('script')
 <script>

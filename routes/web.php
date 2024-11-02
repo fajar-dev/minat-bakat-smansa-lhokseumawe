@@ -54,6 +54,7 @@ Route::prefix('/organization')->group(function () {
 Route::prefix('/achievement')->group(function () {
     Route::get('/', [AchievementController::class, 'index'])->name('achievement');
     Route::post('/', [AchievementController::class, 'store'])->name('achievement.store');
+    Route::post('/{id}', [AchievementController::class, 'update'])->name('achievement.update');
 })->middleware(['auth', 'role:user']);
 
 Route::prefix('/master-data')->group(function () {
