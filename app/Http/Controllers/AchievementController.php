@@ -70,4 +70,10 @@ class AchievementController extends Controller
         $achievement->save();
         return redirect()->route('achievement')->with('success','Berhasil mengubah prestasi');
     }
+
+    public function destroy($id){
+        $achievement = Achievement::findOrFail($id);
+        $achievement->delete();
+        return redirect()->back()->with('success','Berhasil menghapus prestasi');
+    }
 }
