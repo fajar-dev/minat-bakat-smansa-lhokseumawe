@@ -120,11 +120,19 @@
             </a>
           </div>
           <div class="menu-item">
+            <a class="menu-link @if($title == 'Prestasi Siswa') active @endif" href="{{ route('achievement.student') }}">
+              <span class="menu-icon">
+                <i class="ki-outline ki-cup fs-2"></i>
+              </span>
+              <span class="menu-title">Prestasi Siswa</span>
+            </a>
+          </div>
+          <div class="menu-item">
             <a class="menu-link @if($title == 'Hasil') active @endif" href="{{ route('result') }}">
               <span class="menu-icon">
                 <i class="ki-outline ki-questionnaire-tablet fs-2"></i>
               </span>
-              <span class="menu-title">Hasil</span>
+              <span class="menu-title">Hasil Assessment</span>
             </a>
           </div>
           <div class="menu-item">

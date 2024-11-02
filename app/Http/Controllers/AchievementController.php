@@ -76,4 +76,14 @@ class AchievementController extends Controller
         $achievement->delete();
         return redirect()->back()->with('success','Berhasil menghapus prestasi');
     }
+
+    public function student(){
+        $data = [
+            'title' => 'Prestasi Siswa',
+            'subTitle' => null,
+            'page_id' => null,
+            'achievement' => Achievement::all()
+        ];
+        return view('pages.achievement.student',  $data);
+    }
 }

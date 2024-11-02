@@ -52,11 +52,16 @@ Route::prefix('/organization')->group(function () {
 });
 
 Route::prefix('/achievement')->group(function () {
-    Route::get('/', [AchievementController::class, 'index'])->name('achievement');
-    Route::post('/', [AchievementController::class, 'store'])->name('achievement.store');
-    Route::post('/{id}/update', [AchievementController::class, 'update'])->name('achievement.update');
+    Route::group(['middleware' => ['auth', 'isCompletedUser', 'role:user']], function () {
+        Route::get('/', [AchievementController::class, 'index'])->name('achievement');
+        Route::post('/', [AchievementController::class, 'store'])->name('achievement.store');
+        Route::post('/{id}/update', [AchievementController::class, 'update'])->name('achievement.update');
+    });
     Route::get('/{id}/destroy', [AchievementController::class, 'destroy'])->name('achievement.destroy');
-})->middleware(['auth', 'role:user']);
+    Route::group(['middleware' => ['auth', 'role:admin']], function () {
+        Route::get('/student', [AchievementController::class, 'student'])->name('achievement.student');
+    });
+});
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
