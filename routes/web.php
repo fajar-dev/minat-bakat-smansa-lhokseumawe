@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AchievementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -49,6 +50,11 @@ Route::prefix('/organization')->group(function () {
         Route::get('/{id}/data', [OrganizationController::class, 'data'])->name('organization.data');
     });
 });
+
+Route::prefix('/achievement')->group(function () {
+    Route::get('/', [AchievementController::class, 'index'])->name('achievement');
+    Route::post('/', [AchievementController::class, 'store'])->name('achievement.store');
+})->middleware(['auth', 'role:user']);
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');

@@ -80,13 +80,20 @@
             <span class="menu-title">Ekstrakulikuler</span>
           </a>
         </div>
+        <div class="menu-item">
+          <a class="menu-link @if($title == 'Prestasi') active @endif" href="{{ route('achievement') }}">
+            <span class="menu-icon">
+              <i class="ki-outline ki-cup fs-2"></i>
+            </span>
+            <span class="menu-title">Prestasi</span>
+          </a>
+        </div>
         @endif
         @if (Auth::user()->role == 'admin')
           <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($title == 'Ekstrakulikuler') here show @endif">
           <span class="menu-link">
             <span class="menu-icon">
               <i class="ki-outline ki-book fs-2"></i>
-              {{-- <i class="ki-outline ki-cup fs-2"></i> --}}
             </span>
             <span class="menu-title">Ekstrakulikuler</span>
             <span class="menu-arrow"></span>
