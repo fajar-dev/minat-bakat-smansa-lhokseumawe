@@ -302,9 +302,9 @@
           <div class="col-12">
             <div class="card card-flush">
               <div class="card-body table-responsive">
-                <table class="table align-middle table-row-dashed table-striped fs-6 gy-5" id="table">
+                <table class="table align-middle table-row-dashed table-bordered fs-6 gy-5" id="table">
                   <thead>
-                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+                    <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0 bg-light-primary">
                       <th class="min-w-200px">Siswa</th>
                       <th class="min-w-100px">Nama Kegiatan</th>
                       <th class="min-w-100px">Tanggal Kegiatan</th>
@@ -323,7 +323,6 @@
                           </div>
                           <div class="d-flex flex-column">
                             <span class="text-gray-800 fw-bold mb-1">{{ $item->user->name }}</span>
-                            <span class="text-gray-600 fs-7">{{ $item->user->student_identity_number }}</span>
                             <span class="text-gray-600 fs-7">{{ $item->user->class }} - {{ $item->user->major }}</span>
             
                           </div>
@@ -467,11 +466,11 @@
             </div>
     </div>
 </div>
+@endsection
 
 @section('script')
 <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script>
   $("#table").DataTable();
 </script>
-@endsection
 @endsection

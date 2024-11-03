@@ -17,11 +17,22 @@ class Result extends Model
     protected $fillable = [
         'type',
         'content',
+        'category',
         'development_area'
     ];
 
     public function recomended(): HasMany
     {
         return $this->hasMany(Recomended::class);
+    }
+
+    public function intelligenceAssessment(): HasMany
+    {
+        return $this->hasMany(Assessment::class, 'intelligence_id', 'id');
+    }
+
+    public function personalityAssessment(): HasMany
+    {
+        return $this->hasMany(Assessment::class, 'personality_id', 'id');
     }
 }

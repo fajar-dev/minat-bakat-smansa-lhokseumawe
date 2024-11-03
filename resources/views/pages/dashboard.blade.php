@@ -67,6 +67,110 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-6 mt-5">
+      <div class="card card-flush h-xl-100" style="background-color: #F1416C;background-image:url('{{ asset('assets/media/svg/shapes/wave-bg-red.svg') }}')">
+        <div class="card-body">
+            <div class="fw-bold text-white text-end py-2">
+                <span class="fs-3hx d-block">{{ $studentCount }}</span>
+                <span>Siswa Terdaftar</span>
+            </div>          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mt-5">
+      <div class="card card-flush h-xl-100" style="background-color: #7239EA;background-image:url('{{ asset('assets/media/svg/shapes/wave-bg-purple.svg') }}')">
+        <div class="card-body">
+            <div class="fw-bold text-white text-end py-2">
+                <span class="fs-3hx d-block">{{ $achievementCount }}</span>
+                <span>Prestasi Siswa</span>
+            </div>          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mt-5">
+      <div class="card card-flush h-xl-100" style="background-color: #F6C000;background-image:url('{{ asset('assets/media/svg/shapes/wave-bg-yellow.svg') }}')">
+        <div class="card-body">
+            <div class="fw-bold text-white text-end py-2">
+                <span class="fs-3hx d-block">{{ $assessmentStudentCount }}</span>
+                <span>Tes Kategori Siswa</span>
+            </div>          
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 mt-5">
+      <div class="card card-flush h-xl-100" style="background-color: #17C653;background-image:url('{{ asset('assets/media/svg/shapes/wave-bg-green.svg') }}')">
+        <div class="card-body">
+            <div class="fw-bold text-white text-end py-2">
+                <span class="fs-3hx d-block">{{ $assessmentGeneralCount }}</span>
+                <span>Tes Kategori Umum</span>
+            </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 mt-5">
+      <div class="card card-flush card-bordered">
+        <div class="card-header mb-0 pb-0">
+            <h3 class="card-title mb-0 pb-0">Pendaftar Ekstrakulikuler</h3>
+        </div>
+        <div class="card-body mt-0 pt-0">
+          <div class="table-responsive">
+            <table class="table gs-7 gy-7 table-row-dashed" id="table">
+              <thead>
+                <tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+                  <th>Ekstrakulikuler</th>
+                  <th class="text-end">Jumlah</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($organization as $item)     
+                <tr>
+                  <td>{{ $item->name }}</td>
+                  <td class="text-end">{{ $item->organization_registration_count }}</td>
+                  <td class="text-end">
+                    <a href="{{ route('organization.data', $item->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                      <i class="ki-outline ki-arrow-right fs-2"></i>                    
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-12 mt-5">
+          <div class="card card-flush card-bordered">
+            <div class="card-header mb-0 pb-0">
+                <h3 class="card-title mb-0 pb-0">Hasil Tipe Kecerdasan</h3>
+            </div>
+            <div class="card-body mt-0 pt-0">
+              <canvas id="intelligence" class="mh-400px"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mt-5">
+          <div class="card card-flush card-bordered">
+            <div class="card-header mb-0 pb-0">
+                <h3 class="card-title mb-0 pb-0">Hasil Tipe Kepribadian</h3>
+            </div>
+            <div class="card-body mt-0 pt-0">
+              <canvas id="personality" class="mh-400px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endif
 
 
@@ -150,5 +254,135 @@
       </div>
     @endif
 @endif
+
+@endsection
+@section('script')
+<script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script>
+  $("#table").DataTable();
+</script>
+<script>
+  var ctxIntelligence = document.getElementById('intelligence');
+  // Define fonts
+  var fontFamily = KTUtil.getCssVariableValue('--bs-font-sans-serif');
+
+  // Chart labels for intelligence chart
+  const intelligenceLabels = [
+      @foreach($intelligence as $item)
+          '{{ $item->type }}',
+      @endforeach
+  ];
+
+  // Chart data for intelligence chart
+  const intelligenceData = {
+      labels: intelligenceLabels,
+      datasets: [
+          {
+              data: [
+                  @foreach($intelligence as $item)
+                      {{ $item->intelligence_assessment_count }},
+                  @endforeach
+              ],
+              backgroundColor: [
+                  '#7239EA',
+                  '#F1F1F4',
+                  '#17C653',
+                  '#1B84FF',
+                  '#F6C000',
+                  '#F8285A',
+                  '#1E2129',
+                  '#4B5675',
+                  '#252F4A'
+              ]
+          }
+      ]
+  };
+
+  // Chart config for intelligence chart
+  const intelligenceConfig = {
+      type: 'pie',
+      data: intelligenceData,
+      options: {
+          plugins: {
+              title: {
+                  display: false,
+              },
+              legend: {
+                  labels: {
+                      font: {
+                          family: fontFamily
+                      }
+                  }
+              }
+          },
+          responsive: true,
+      }
+  };
+
+  // Init ChartJS for intelligence chart
+  var intelligenceChart = new Chart(ctxIntelligence, intelligenceConfig);
+</script>
+
+<script>
+  var ctxPersonality = document.getElementById('personality');
+  // Define fonts
+  var fontFamily = KTUtil.getCssVariableValue('--bs-font-sans-serif');
+
+  // Chart labels for personality chart
+  const personalityLabels = [
+      @foreach($personality as $item)
+          '{{ $item->type }}',
+      @endforeach
+  ];
+
+  // Chart data for personality chart
+  const personalityData = {
+      labels: personalityLabels,
+      datasets: [
+          {
+              data: [
+                  @foreach($personality as $item)
+                      {{ $item->personality_assessment_count }},
+                  @endforeach
+              ],
+              backgroundColor: [
+                  '#7239EA',
+                  '#F1F1F4',
+                  '#17C653',
+                  '#1B84FF',
+                  '#F6C000',
+                  '#F8285A',
+                  '#1E2129',
+                  '#4B5675',
+                  '#252F4A'
+              ]
+          }
+      ]
+  };
+
+  // Chart config for personality chart
+  const personalityConfig = {
+      type: 'pie',
+      data: personalityData,
+      options: {
+          plugins: {
+              title: {
+                  display: false,
+              },
+              legend: {
+                  labels: {
+                      font: {
+                          family: fontFamily
+                      }
+                  }
+              }
+          },
+          responsive: true,
+      }
+  };
+
+  // Init ChartJS for personality chart
+  var personalityChart = new Chart(ctxPersonality, personalityConfig);
+</script>
 
 @endsection
