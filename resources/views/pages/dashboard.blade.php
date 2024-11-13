@@ -200,7 +200,7 @@
           <span class="badge badge-primary">{{ $myAssessment->intelligence->type }}</span>
 
           <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-          <span class="text-gray-600">{{ $myAssessment->intelligence->content }}</span>
+          <span class="text-gray-600">{!! $myAssessment->intelligence->content !!}</span>
 
           <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
           <span class="text-gray-600">{{ $myAssessment->intelligence->development_area }}</span>

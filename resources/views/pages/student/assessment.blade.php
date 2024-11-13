@@ -80,7 +80,7 @@
         <span class="badge badge-primary">{{ $assessment->intelligence->type }}</span>
 
         <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-        <span class="text-gray-600">{{ $assessment->intelligence->content }}</span>
+        <span class="text-gray-600">{!! $assessment->intelligence->content !!}</span>
 
         <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
         <span class="text-gray-600">{{ $assessment->intelligence->development_area }}</span>

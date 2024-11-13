@@ -36,7 +36,7 @@
                 <span class="badge badge-primary">{{ $result->intelligence->type }}</span>
 
                 <p class="fw-bold mb-1 mt-5">Penjelasan:</p>
-                <span class="text-gray-600">{{ $result->intelligence->content }}</span>
+                <span class="text-gray-600">{!! $result->intelligence->content !!}</span>
 
                 <p class="fw-bold mb-1 mt-5">Area Pengembangan:</p>
                 <span class="text-gray-600">{{ $result->intelligence->development_area }}</span>

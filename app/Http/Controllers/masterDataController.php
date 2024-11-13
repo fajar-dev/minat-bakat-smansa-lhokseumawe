@@ -90,13 +90,15 @@ class masterDataController extends Controller
     $validator = Validator::make($request->all(), [
         'type' => 'required',
         'content' => 'required',
+        'development_area' => 'required',
     ]);
     if ($validator->fails()) {
         return redirect()->route('master-data.intelligence-type')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
     }
         $type = Result::findOrFail($id);
         $type->type = $request->input('type');    
-        $type->content = $request->input('content');            
+        $type->content = $request->input('content');        
+        $type->development_area = $request->input('development_area');    
         $type->save();
         return redirect()->route('master-data.intelligence-type')->with('success', 'Berhasil Merubah data');
     }
