@@ -2,6 +2,93 @@
 
 @section('content')
 <div class="card card-flush">
+  <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+    <div class="card-toolbar">
+      <button data-bs-toggle="modal" data-bs-target="#add" class="btn btn-primary d-flex align-items-center"><i class="ki-duotone ki-plus fs-2"></i>
+        Tambah
+      </button>
+      <div class="modal fade" tabindex="-1" id="add">
+        <div class="modal-dialog">
+            <form method="POST" action="{{ route('master-data.organization.store') }}" class="modal-content" id="form">
+              @csrf
+                <div class="modal-header">
+                    <h3 class="modal-title">Tambah Ekstrakulikuler  </h3>
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-5">
+                    <label for="exampleFormControlInput1" class="required form-label">Kategori</label>
+                    <select class="form-select form-select-solid @error('organization_category_id') is-invalid @enderror" name="organization_category_id" data-control="select2" data-placeholder="Pilih Kategori Bidang">
+                      <option></option>
+                      @foreach ($organization as $organization_category)
+                        <option value="{{ $organization_category->id }}" {{ old('organization_category_id') == $organization_category->id ? 'selected' : '' }}>
+                          {{ $organization_category->name }}
+                        </option>
+                      @endforeach
+                    </select>
+                    @error('organization_category_id')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>     
+                  <div class="mb-5">
+                    <label for="exampleFormControlInput1" class="required form-label">Kegiatan</label>
+                    <input type="text" name="name" class="form-control form-control-solid @error('name') is-invalid @enderror"  value="{{ old('name') }}" placeholder="Nama Ekstrakulikuler" required/>
+                    @error('name')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+                  <div class="mb-5">
+                    <label for="exampleFormControlInput1" class="required form-label">Pembina</label>
+                    <div id="kt_docs_repeater_add">
+                      <div class="form-group">
+                          <div data-repeater-list="coach">
+                            <div data-repeater-item>
+                              <div class="form-group row align-items-center mt-3">
+                                  <div class="col-md-5">
+                                      <label class="form-label text-muted">Nama:</label>
+                                      <input type="text" name="name" class="form-control form-control-solid mb-2 mb-md-0 w-100" placeholder="Nama Lengkap" />
+                                  </div>
+                                  <div class="col-md-5">
+                                      <label class="form-label text-muted">Jabatan:</label>
+                                      <input type="text" name="position" class="form-control form-control-solid mb-2 mb-md-0" placeholder="Jabatan / Golongan" />
+                                  </div>
+                                  <div class="col-md-2">
+                                      <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger btn-icon mt-3 mt-md-8">
+                                          <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                                      </a>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-group mt-5">
+                          <a href="javascript:;" data-repeater-create class="btn btn-light-primary">
+                              <i class="ki-duotone ki-plus fs-3"></i>
+                              Tambah
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" id="submit" class="btn btn-primary">
+                      <span class="indicator-label">Simpan</span>
+                      <span class="indicator-progress" style="display: none;">Loading... 
+                      <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="card-body table-responsive">
     <table class="table align-middle table-row-dashed table-striped fs-6 gy-5">
       <thead>
@@ -13,18 +100,22 @@
         </tr>
       </thead>
       <tbody class="fw-semibold text-gray-800">
-        <?php $no = 1; ?>
+        <?php 
+          $no = 1; 
+          $index = 1; // Inisialisasi variabel index untuk deret angka
+        ?>
         <?php foreach ($organization as $org_category): ?>
           <tr>
             <td colspan="4">
               <span class="text-gray-900 ps-3 fw-bold"><?= chr(64 + $no++) ?>.</span>
-              <span class="text-gray-900 ps-3 fw-bold"> <?= $org_category->name ?></span>
+              <span class="text-gray-900 ps-3 fw-bold"><?= $org_category->name ?></span>
             </td>
           </tr>
+      
           <?php foreach ($org_category->organization as $org): ?>
             <tr>
               <td>
-                <span class="ps-5"><?= $org->id ?></span>
+                <span class="ps-5"><?= $index++ ?></span> <!-- Menampilkan angka deret -->
               </td>
               <td class="pe-0">
                 <span><?= $org->name ?></span>
@@ -33,8 +124,12 @@
                 <span>
                   <?php 
                     $coaches = json_decode($org->coach, true);
-                    foreach ($coaches as $coach) {
-                      echo $coach['name'] . ' (' . $coach['position'] . ')<br>';
+                    if (is_array($coaches) && !empty($coaches)) {
+                        foreach ($coaches as $coach) {
+                            echo $coach['name'] . ' (' . $coach['position'] . ')<br>';
+                        }
+                    } else {
+                        echo ''; 
                     }
                   ?>
                 </span>
@@ -53,7 +148,7 @@
                 </a>
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                   <div class="menu-item px-3">
-                    <a href="#"  data-bs-toggle="modal" data-bs-target="#edit{{$org->id}}" class="menu-link px-3">Edit</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit{{$org->id}}" class="menu-link px-3">Edit</a>
                   </div>
                   <div class="menu-item px-3">
                     <a id="{{ route('master-data.organization.destroy', $org->id) }}" class="menu-link px-3 btn-del">Hapus</a>
@@ -64,6 +159,7 @@
           <?php endforeach; ?>
         <?php endforeach; ?>
       </tbody>
+      
     </table>    
   </div>
 </div>
@@ -181,7 +277,23 @@
   });
 </script>
 @endforeach
+<script>
+  $('#kt_docs_repeater_add').repeater({
+    initEmpty: false,
 
+    defaultValues: {
+        'text-input': 'foo'
+    },
+
+    show: function () {
+        $(this).slideDown();
+    },
+
+    hide: function (deleteElement) {
+        $(this).slideUp(deleteElement);
+    }
+});
+</script>
 <script>
   document.querySelectorAll('form').forEach(function(form) {
     form.addEventListener('submit', function(event) {

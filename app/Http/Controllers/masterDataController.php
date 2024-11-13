@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
-use App\Models\OrganizationCategory;
-use App\Models\Question;
 use App\Models\Result;
+use App\Models\Question;
+use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Models\OrganizationCategory;
+use Illuminate\Support\Facades\Validator;
 
 class masterDataController extends Controller
 {
@@ -24,8 +25,32 @@ class masterDataController extends Controller
         return view('pages.master-data.organization',  $data);
     }
 
+    public function organizationStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'organization_category_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('master-data.organization')->with('error', 'Gagal menambahkan data')->withInput()->withErrors($validator);
+        }
+        
+        $organization = New Organization();
+        $organization->organization_category_id = $request->input('organization_category_id');
+        $organization->name = $request->input('name');        
+        $organization->coach = json_encode($request->input('coach'));
+        $organization->save();
+        return redirect()->route('master-data.organization')->with('success', 'Berhasil menambahkan data');
+    }
+
     public function organizationUpdate(Request $request, $id)
     {
+    $validator = Validator::make($request->all(), [
+        'name' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('master-data.organization')->with('error', 'Gagal mn data')->withInput()->withErrors($validator);
+    }
         $organization = Organization::findOrFail($id);
         $organization->name = $request->input('name');        
         $organization->coach = json_encode($request->input('coach'));
