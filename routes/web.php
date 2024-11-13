@@ -65,6 +65,9 @@ Route::prefix('/achievement')->group(function () {
 
 Route::prefix('/master-data')->group(function () {
     Route::get('/organization', [masterDataController::class, 'organization'])->name('master-data.organization');
+    Route::post('/organization/{id}/update', [masterDataController::class, 'organizationUpdate'])->name('master-data.organization.update');
+    Route::get('/organization/{id}/destroy', [masterDataController::class, 'organizationDestroy'])->name('master-data.organization.destroy');
+
     Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
     Route::get('/intelligence-type', [masterDataController::class, 'intelligenceType'])->name('master-data.intelligence-type');
     Route::get('/personality-type', [masterDataController::class, 'personalityType'])->name('master-data.personality-type');

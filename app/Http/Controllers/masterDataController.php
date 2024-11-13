@@ -15,9 +15,29 @@ class masterDataController extends Controller
             'title' => 'Data Master',
             'subTitle' => 'Ekstrakulikuler',
             'page_id' => null,
-            'organization' => OrganizationCategory::with('organization')->get()
+            'organization' => OrganizationCategory::with('organization')->get(),
+            'organizations' => Organization::all()->map(function($organization) {
+                $organization->coach = json_decode($organization->coach, true);
+                return $organization;
+            })
         ];
         return view('pages.master-data.organization',  $data);
+    }
+
+    public function organizationUpdate(Request $request, $id)
+    {
+        $organization = Organization::findOrFail($id);
+        $organization->name = $request->input('name');        
+        $organization->coach = json_encode($request->input('coach'));
+        $organization->save();
+        return redirect()->route('master-data.organization')->with('success', 'Berhasil Merubah data');
+    }
+
+    public function organizationDestroy($id)
+    {
+        $organization = Organization::findOrFail($id);
+        $organization->delete();
+        return redirect()->route('master-data.organization')->with('success', 'Berhasil Menghapus data');
     }
 
     public function question(){
