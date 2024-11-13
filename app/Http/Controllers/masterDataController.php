@@ -7,6 +7,7 @@ use App\Models\Question;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Models\OrganizationCategory;
+use App\Models\Recomended;
 use Illuminate\Support\Facades\Validator;
 
 class masterDataController extends Controller
@@ -55,6 +56,7 @@ class masterDataController extends Controller
         $organization->name = $request->input('name');        
         $organization->coach = json_encode($request->input('coach'));
         $organization->save();
+
         return redirect()->route('master-data.organization')->with('success', 'Berhasil Merubah data');
     }
 
@@ -80,26 +82,41 @@ class masterDataController extends Controller
             'title' => 'Data Master',
             'subTitle' => 'Tipe Kecerdasan',
             'page_id' => null,
-            'type' => Result::where('category', 'intelligence')->get()
+            'type' => Result::where('category', 'intelligence')->get(),
+            'organization' => Organization::all()
         ];
         return view('pages.master-data.intelligence-type',  $data);
     }
 
     public function intelligenceTypeUpdate(Request $request, $id)
     {
-    $validator = Validator::make($request->all(), [
-        'type' => 'required',
-        'content' => 'required',
-        'development_area' => 'required',
-    ]);
-    if ($validator->fails()) {
-        return redirect()->route('master-data.intelligence-type')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
-    }
+        $validator = Validator::make($request->all(), [
+            'type' => 'required',
+            'content' => 'required',
+            'development_area' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('master-data.intelligence-type')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
+        }
         $type = Result::findOrFail($id);
         $type->type = $request->input('type');    
         $type->content = $request->input('content');        
         $type->development_area = $request->input('development_area');    
         $type->save();
+
+        if(is_array($request->recomended)){
+            Recomended::where('result_id', $id)->delete();
+            foreach ($request->recomended as  $result) {
+                Recomended::updateOrInsert([
+                    'result_id' => $id,
+                    'organization_id' => $result
+                ]);
+            }
+        }else{
+            Recomended::where('result_id', $id)->delete();
+        }
+        
         return redirect()->route('master-data.intelligence-type')->with('success', 'Berhasil Merubah data');
     }
 

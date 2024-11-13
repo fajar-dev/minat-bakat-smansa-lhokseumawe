@@ -103,6 +103,24 @@
               </div>
             @enderror
           </div>
+          <div class="mb-5">
+            <label for="exampleFormControlInput1" class="required form-label">Rekomendasi</label>
+            <select class="form-select form-select-solid" data-control="select2" data-close-on-select="false" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" name="recomended[]" required>
+                @foreach ($item->recomended as $recom)
+                    <option value="{{ $recom->organization->id }}" selected>{{ $recom->organization->name }}</option>
+                @endforeach
+                @foreach ($organization as $organizations)
+                    @if (!$item->recomended->contains('organization_id', $organizations->id))
+                        <option value="{{ $organizations->id }}">{{ $organizations->name }}</option>
+                    @endif
+                @endforeach
+            </select>
+            @error('location')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+          </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
