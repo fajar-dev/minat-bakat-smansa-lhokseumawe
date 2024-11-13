@@ -49,7 +49,7 @@ class masterDataController extends Controller
         'name' => 'required',
     ]);
     if ($validator->fails()) {
-        return redirect()->route('master-data.organization')->with('error', 'Gagal mn data')->withInput()->withErrors($validator);
+        return redirect()->route('master-data.organization')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
     }
         $organization = Organization::findOrFail($id);
         $organization->name = $request->input('name');        
@@ -85,6 +85,22 @@ class masterDataController extends Controller
         return view('pages.master-data.intelligence-type',  $data);
     }
 
+    public function intelligenceTypeUpdate(Request $request, $id)
+    {
+    $validator = Validator::make($request->all(), [
+        'type' => 'required',
+        'content' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('master-data.intelligence-type')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
+    }
+        $type = Result::findOrFail($id);
+        $type->type = $request->input('type');    
+        $type->content = $request->input('content');            
+        $type->save();
+        return redirect()->route('master-data.intelligence-type')->with('success', 'Berhasil Merubah data');
+    }
+
     public function personalityType(){
         $data = [
             'title' => 'Data Master',
@@ -93,5 +109,21 @@ class masterDataController extends Controller
             'type' => Result::where('category', 'personality')->get()
         ];
         return view('pages.master-data.personality-type',  $data);
+    }
+
+    public function personalityTypeUpdate(Request $request, $id)
+    {
+    $validator = Validator::make($request->all(), [
+        'type' => 'required',
+        'content' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return redirect()->route('master-data.personality-type')->with('error', 'Gagal merubah data')->withInput()->withErrors($validator);
+    }
+        $type = Result::findOrFail($id);
+        $type->type = $request->input('type');    
+        $type->content = $request->input('content');            
+        $type->save();
+        return redirect()->route('master-data.personality-type')->with('success', 'Berhasil Merubah data');
     }
 }

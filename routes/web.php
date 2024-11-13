@@ -71,7 +71,9 @@ Route::prefix('/master-data')->group(function () {
 
     Route::get('/question', [masterDataController::class, 'question'])->name('master-data.question');
     Route::get('/intelligence-type', [masterDataController::class, 'intelligenceType'])->name('master-data.intelligence-type');
+    Route::post('/intelligence-type/{id}/update', [masterDataController::class, 'intelligenceTypeUpdate'])->name('master-data.intelligence-type.update');
     Route::get('/personality-type', [masterDataController::class, 'personalityType'])->name('master-data.personality-type');
+    Route::post('/personality-type/{id}/update', [masterDataController::class, 'personalityTypeUpdate'])->name('master-data.personality-type.update');
 })->middleware(['auth', 'role:admin']);
 
 Route::prefix('/student')->group(function () {
